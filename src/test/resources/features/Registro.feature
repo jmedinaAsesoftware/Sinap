@@ -1,6 +1,6 @@
-#Proyecto de pruebas y cargado en Github
-#27/01/2020
+#Proyecto Sinap
+#12/03/2021
 #Jhonatan Medina Blanco
-Feature: Registro en la pagina Booking 
-Scenario: scenario description 
-	Given abrir el navegador 
+Feature: Ingresar a la pagina de Sinap
+Scenario: Parametrizar
+	Given abrir el navegador e ingresar a la url 

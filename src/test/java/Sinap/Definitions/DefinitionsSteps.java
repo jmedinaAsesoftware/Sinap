@@ -9,10 +9,9 @@ public class DefinitionsSteps {
 
 	private WebDriver driver;
 	private Conexion conexion = new Conexion();
-
 	
-
-	@Given("^abrir el navegador$")
+//se realiza el llamado para ser interpetado por lenguaje gherkin
+	@Given("^abrir el navegador e ingresar a la url$")
 	public void abrir_navegador() {
 		this.conexion = new Conexion();
 		this.driver = this.conexion.abrirNavegador();
