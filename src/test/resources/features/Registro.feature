@@ -4,3 +4,4 @@
 Feature: Ingresar a la pagina de Sinap
 Scenario: Parametrizar
 	Given abrir el navegador e ingresar a la url 
+	And Al hacer clic en parametros

@@ -28,7 +28,7 @@ public class Questions {
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		File scr = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		String filename = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
-		File dest = new File("C:\\Users\\jmedina\\Documents\\Captura" + filename + ".png");
+		File dest = new File("C:\\Users\\jmedina\\Documents\\Captura\\screenshot" + filename + ".png");
 		try {
 			FileUtils.copyFile(scr, dest);
 		} catch (IOException e) {
@@ -49,5 +49,13 @@ public class Questions {
 	public void textoCrearCuentaAssert(WebDriver driver) {
 
 		Assert.assertEquals("Crea una contraseña", "Crea una contraseña");
+	}
+	@Step
+	public void tiempoSegundos(int seconds) {
+		try {
+			Thread.sleep(seconds * 1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 }
