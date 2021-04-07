@@ -71,11 +71,17 @@ public class ListasDesplegablesPages {
 	@FindBy(how = How.XPATH, using = "//mat-select[@formcontrolname = 'conceptoCobro']")
 	private WebElement BtnListaConceptoDebito;
 
+	@FindBy(how = How.XPATH, using = "//mat-select[@class = 'mat-select ng-tns-c103-22 ng-tns-c44-21 ng-star-inserted']")
+	private WebElement BtnListaConceptoDebitoDos;
+
 	@FindBy(how = How.XPATH, using = "//mat-select[@formcontrolname = 'mes']")
 	private WebElement BtnListaMes;
 
 	@FindBy(how = How.XPATH, using = "//mat-select[@formcontrolname = 'tipoPlacas']")
 	private WebElement BtnListaTipoPlacas;
+
+	@FindBy(how = How.XPATH, using = "//mat-select[@formcontrolname = 'tipoPlaca']")
+	private WebElement BtnListaTipoPlacasDos;
 
 	public ListasDesplegablesPages(WebDriver driver) {
 		PageFactory.initElements(driver, this);
@@ -245,7 +251,17 @@ public class ListasDesplegablesPages {
 		WebElement TipoConcepto = driver.findElement(
 				By.xpath("//mat-option[@role = 'option']//span[contains(text(),'" + ConceptoDebito + "')]"));
 		TipoConcepto.click();
-			questions.impliciWait();
+		questions.impliciWait();
+	}
+
+	@Step
+	public void ListaConceptoDebitoDos(String ConceptoDebito) {
+		clickOnElement(BtnListaConceptoDebitoDos);
+
+		WebElement TipoConcepto = driver.findElement(
+				By.xpath("//mat-option[@role = 'option']//span[contains(text(),'" + ConceptoDebito + "')]"));
+		TipoConcepto.click();
+		questions.impliciWait();
 	}
 
 	@Step
@@ -266,7 +282,22 @@ public class ListasDesplegablesPages {
 
 		WebElement modal = driver.findElement(By.xpath("//div[@role= 'listbox']"));
 		modal.sendKeys(Keys.ESCAPE);
+
+		questions.impliciWait();
+	}
+
+	@Step
+	public void ListaTipoPlacasDos(String TipoPlaca) {
+		clickOnElement(BtnListaTipoPlacasDos);
 		
+		WebElement tipoPlaca = driver.findElement(By.xpath("//span[contains(text(),'" + TipoPlaca + "')]"));
+		questions.impliciWait();
+		tipoPlaca.click();
+		questions.impliciWait();
+
+		WebElement modal = driver.findElement(By.xpath("//div[@role= 'listbox']"));
+		modal.sendKeys(Keys.ESCAPE);
+
 		questions.impliciWait();
 	}
 
@@ -274,6 +305,15 @@ public class ListasDesplegablesPages {
 	public void ListaPlacasTerminadas(String PlacaTerminada) {
 		WebElement AsinarPlaca = driver.findElement(
 				By.xpath("//mat-checkbox[@class='mat-checkbox mat-primary ng-star-inserted']//span[contains(text(),'"
+						+ PlacaTerminada + "')]"));
+		AsinarPlaca.click();
+		questions.impliciWait();
+	}
+
+	@Step
+	public void ListaPlacasTerminadasDos(String PlacaTerminada) {
+		WebElement AsinarPlaca = driver.findElement(
+				By.xpath("//mat-checkbox[@class='mat-checkbox mat-accent ng-star-inserted']//span[contains(text(),'"
 						+ PlacaTerminada + "')]"));
 		AsinarPlaca.click();
 		questions.impliciWait();

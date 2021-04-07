@@ -71,6 +71,7 @@ public class ElementosPages {
 
 		WebElement scroll = driver.findElement(
 				By.xpath("//mat-dialog-content[@class ='mat-dialog-content mat-typography custom-scrollbar']"));
+		
 		Actions scrolldown = new Actions(driver);
 		List<WebElement> button = scroll.findElements(By.tagName("button"));
 		scrolldown.moveToElement(button.get(3)).click().build().perform();
@@ -93,6 +94,16 @@ public class ElementosPages {
 		Actions scrolldown = new Actions(driver);
 		List<WebElement> article = scroll.findElements(By.tagName("button"));
 		System.out.println(article.size());
+		scrolldown.moveToElement(article.get(3)).build().perform();
+		questions.impliciWait();
+	}
+	
+	@Step
+	public void ScrollCalendarioPagosDos() {
+		WebElement scroll = driver.findElement(
+				By.xpath("//mat-dialog-content[@class ='mat-dialog-content mat-typography custom-scrollbar']"));
+		Actions scrolldown = new Actions(driver);
+		List<WebElement> article = scroll.findElements(By.tagName("button"));
 		scrolldown.moveToElement(article.get(3)).build().perform();
 		questions.impliciWait();
 	}

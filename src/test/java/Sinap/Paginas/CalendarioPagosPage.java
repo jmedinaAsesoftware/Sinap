@@ -19,7 +19,10 @@ public class CalendarioPagosPage {
 
 	@FindBy(how = How.XPATH, using = "//input[@formcontrolname = 'nombre']")
 	private WebElement TextoNombre;
-	
+
+	@FindBy(how = How.XPATH, using = "//textarea[@formcontrolname = 'observaciones']")
+	private WebElement TextoObservaciones;
+
 	public CalendarioPagosPage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 		this.driver = driver;
@@ -41,11 +44,22 @@ public class CalendarioPagosPage {
 		botonesPages.BtnCalendarioPagos();
 		questions.screenShot();
 	}
-	
+
 	@Step
-	public void DiligenciaFormulario(String Nombre, String ConceptoDebito, String Mes, String PlacaTerminada, String TipoPlaca ) {
+	public void EditarFormulario(String NombreBuscar) {
+		botonesPages.BtnEditarCalendarioPago(NombreBuscar);
+	}
+
+	@Step
+	public void CrearFormulario() {
 		botonesPages.BtnCrearCalendarioFormulario();
+	}
+
+	@Step
+	public void DiligenciaFormulario(String Nombre, String ConceptoDebito, String Mes, String PlacaTerminada,
+			String TipoPlaca) {
 		questions.screenShot();
+		TextoNombre.clear();
 		TextoNombre.sendKeys(Nombre);
 		questions.impliciWait();
 		listasDesplegablesPages.ListaConceptoDebito(ConceptoDebito);
@@ -63,8 +77,9 @@ public class CalendarioPagosPage {
 		questions.tiempoSegundos(1);
 		botonesPages.BtnCrearFormulario();
 	}
+
 	@Step
-	public void ConfirmarConceptoDebito() {
+	public void ConfirmarCalendarioPagos() {
 		questions.impliciWait();
 		questions.AssertConfirmarCalendarioPago();
 		questions.screenShot();
@@ -72,5 +87,44 @@ public class CalendarioPagosPage {
 		questions.impliciWait();
 		questions.AssertCreadoCalendarioPagoExitoso();
 		questions.screenShot();
+		elementosPages.CerrarVentana();
+	}
+
+	@Step
+	public void EditarDiligenciaFormulario(String Nombre, String ConceptoDebito, String Mes, String PlacaTerminada,
+			String TipoPlaca, String Observaciones) {
+		questions.screenShot();
+		TextoNombre.clear();
+		TextoNombre.sendKeys(Nombre);
+		questions.impliciWait();
+		listasDesplegablesPages.ListaConceptoDebitoDos(ConceptoDebito);
+		listasDesplegablesPages.ListaMes(Mes);
+		questions.impliciWait();
+		elementosPages.BtnCalendarioInicio();
+		questions.impliciWait();
+		elementosPages.BtnCalendarioFin(driver);
+		questions.screenShot();
+		questions.impliciWait();
+		listasDesplegablesPages.ListaTipoPlacasDos(TipoPlaca);
+		elementosPages.ScrollCalendarioPagosDos();
+		listasDesplegablesPages.ListaPlacasTerminadasDos(PlacaTerminada);
+		questions.tiempoSegundos(1);
+		TextoObservaciones.clear();
+		questions.impliciWait();
+		TextoObservaciones.sendKeys(Observaciones);
+		questions.screenShot();
+		botonesPages.BtnGuardarCambios();
+
+	}
+	@Step
+	public void ConfirmarModificacionCalendarioPagos() {
+		questions.impliciWait();
+		questions.AssertConfirmarEdicionCalendarioPago();
+		questions.screenShot();
+		botonesPages.BtnAceptar();
+		questions.impliciWait();
+		questions.AssertCreadoCalendarioPagoExitoso();
+		questions.screenShot();
+		elementosPages.CerrarVentana();
 	}
 }

@@ -39,8 +39,6 @@ public class Questions {
 			e.printStackTrace();
 
 		}
-		//questions.impliciWait();
-
 	}
 
 	@Step
@@ -142,5 +140,15 @@ public class Questions {
 		System.out.println(mensaje);
 		Assert.assertEquals("Calendario creado satisfactoriamente.", mensaje);
 		
+	}
+	
+	@Step
+	public void AssertConfirmarEdicionCalendarioPago() {
+
+		String mensaje = driver
+				.findElement(
+						By.xpath("//div[contains(text(),'¿Está seguro que quiere modificar este calendario?')]"))
+				.getText();
+		Assert.assertEquals("¿Está seguro que quiere modificar este calendario?", mensaje);
 	}
 }

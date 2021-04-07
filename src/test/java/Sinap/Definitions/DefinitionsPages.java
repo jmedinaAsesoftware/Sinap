@@ -170,11 +170,22 @@ public class DefinitionsPages {
 	public void Diligenciar_Formulario(String Nombre, String ConceptoDebito, String Mes, String PlacaTerminada,
 			String TipoPlaca) {
 		this.calendarioPagosPage = new CalendarioPagosPage(driver);
+		this.calendarioPagosPage.CrearFormulario();
 		this.calendarioPagosPage.DiligenciaFormulario(Nombre, ConceptoDebito, Mes, PlacaTerminada, TipoPlaca);
 	}
+
 	@Then("^se confirma la creacion del calendario de pago$")
 	public void Confirman_Calendario() {
 		this.calendarioPagosPage = new CalendarioPagosPage(driver);
-		this.calendarioPagosPage.ConfirmarConceptoDebito();
+		this.calendarioPagosPage.ConfirmarCalendarioPagos();
+	}
+
+	@When("^Editar los campos nombre a buscar (.*) Nombre (.*) selecciona concepto debito (.*) selecciona mes (.*) placa terminada (.*) tipo de placa (.*) observacion (.*)$")
+	public void Editar_Formulario(String NombreBuscar, String Nombre, String ConceptoDebito, String Mes,
+			String PlacaTerminada, String TipoPlaca, String Observaciones) {
+		this.calendarioPagosPage = new CalendarioPagosPage(driver);
+		this.calendarioPagosPage.EditarFormulario(NombreBuscar);
+		this.calendarioPagosPage.EditarDiligenciaFormulario(Nombre, ConceptoDebito, Mes, PlacaTerminada, TipoPlaca,
+				Observaciones);
 	}
 }

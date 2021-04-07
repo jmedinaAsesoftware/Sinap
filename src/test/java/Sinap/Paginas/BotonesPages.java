@@ -203,4 +203,13 @@ public class BotonesPages {
 		clickOnElement(BtnCrearCalendarioFormulario);
 		questions.impliciWait();
 	}
+	
+	@Step
+	public void BtnEditarCalendarioPago(String NombreBuscar) {
+		WebElement nombre = driver.findElement(By.xpath("//tr/td[contains(text(),'" + NombreBuscar + "')]"));
+		questions.impliciWait();
+		WebElement btnModificar = nombre.findElement(By.xpath("//i[@mattooltip = 'Editar']"));
+		questions.impliciWait();
+		btnModificar.click();
+	}
 }

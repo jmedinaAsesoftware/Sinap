@@ -1,13 +1,23 @@
 #Proyecto Sinap
 #05/04/2021
 #Jhonatan Medina Blanco
-@CalendarioPagos
+ @Regresion
 Feature: Debe permitir crear Calendario de pagos (HU_1.7.01) 
+Background: 
+	And abrir el navegador e ingresar a la url 
+	And Al hacer clic en gestion parametros y Calendario de pagos 
 Scenario Outline: Crear una calendario de pagos vigente 
-	And abrir el navegador e ingresar a la url
-	And Al hacer clic en gestion parametros y Calendario de pagos
-	When Diligencie el campo Nombre <Nombre> selecciona concepto debito <ConceptoDebito> selecciona mes <Mes> placa terminada <PlacaTerminada> tipo de placa <TipoPlaca>
+
+	When Diligencie el campo Nombre <Nombre> selecciona concepto debito <ConceptoDebito> selecciona mes <Mes> placa terminada <PlacaTerminada> tipo de placa <TipoPlaca> 
 	Then se confirma la creacion del calendario de pago
-	Examples:
-	|Nombre					    |ConceptoDebito |Mes	  	  |PlacaTerminada|TipoPlaca	 |
-	|Automatizacio QA		 	|Prueba integral|JUNIO		  |7			 |A:ALQUILER |
+	
+	Examples: 
+		|Nombre					    |ConceptoDebito |Mes	  	  |PlacaTerminada|TipoPlaca	 |
+		|Automatizacio QA		 	|Prueba integral|JULIO		  |9			 |A:ALQUILER |
+		
+@CalendarioPagos
+Scenario Outline: Editar calendario de pagos vigente 
+	When Editar los campos nombre a buscar <NombreBuscar> Nombre <Nombre> selecciona concepto debito <ConceptoDebito> selecciona mes <Mes> placa terminada <PlacaTerminada> tipo de placa <TipoPlaca> observacion <Observaciones> 
+	Examples: 
+		|NombreBuscar|Nombre					    |ConceptoDebito |Mes	  	  |PlacaTerminada|TipoPlaca	 |Observaciones|
+		|Pago Test	 |Automatizacio QA		 		|Prueba integral|JUNIO		  |9			 |BOMBEROS   |Pruebas|
