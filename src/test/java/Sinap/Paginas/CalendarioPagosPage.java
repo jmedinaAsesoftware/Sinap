@@ -10,7 +10,7 @@ import Sinap.Steps.Questions;
 import net.thucydides.core.annotations.Step;
 
 public class CalendarioPagosPage {
-//Prueba Git
+
 	private WebDriver driver;
 	private BotonesPages botonesPages;
 	private Questions questions;
