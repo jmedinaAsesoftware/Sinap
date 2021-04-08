@@ -73,6 +73,9 @@ public class BotonesPages {
 	
 	@FindBy( how = How.XPATH, using = "//span[contains(text(),'Crear calendario')]")
 	private WebElement BtnCrearCalendarioFormulario;
+	
+	@FindBy(how = How.XPATH, using = "//button[@class = 'swal2-confirm swal2-styled']")
+	private WebElement BtnAceptarEdicion;
 
 	public BotonesPages(WebDriver driver) {
 		PageFactory.initElements(driver, this);
@@ -211,5 +214,10 @@ public class BotonesPages {
 		WebElement btnModificar = nombre.findElement(By.xpath("//i[@mattooltip = 'Editar']"));
 		questions.impliciWait();
 		btnModificar.click();
+	}
+	@Step
+	public void BtnAceptarEdicion() {
+		clickOnElement(BtnAceptarEdicion);
+		questions.tiempoSegundos(1);	
 	}
 }

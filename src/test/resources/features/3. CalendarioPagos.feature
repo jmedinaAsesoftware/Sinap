@@ -17,7 +17,8 @@ Scenario Outline: Crear una calendario de pagos vigente
 		
 @CalendarioPagos
 Scenario Outline: Editar calendario de pagos vigente 
-	When Editar los campos nombre a buscar <NombreBuscar> Nombre <Nombre> selecciona concepto debito <ConceptoDebito> selecciona mes <Mes> placa terminada <PlacaTerminada> tipo de placa <TipoPlaca> observacion <Observaciones> 
+	When Editar los campos nombre a buscar <NombreBuscar> Nombre <Nombre> selecciona concepto debito <ConceptoDebito> selecciona mes <Mes> placa terminada <PlacaTerminada> tipo de placa <TipoPlaca> observacion <Observaciones>
+	Then  se confirma la edicion del calendario de pago 
 	Examples: 
-		|NombreBuscar|Nombre					    |ConceptoDebito |Mes	  	  |PlacaTerminada|TipoPlaca	 |Observaciones|
-		|Pago Test	 |Automatizacio QA		 		|Prueba integral|JUNIO		  |9			 |BOMBEROS   |Pruebas|
+		|NombreBuscar		 |Nombre					    |ConceptoDebito |Mes	  	  |PlacaTerminada|TipoPlaca	  |Observaciones|
+		|Prueba Creación	 |Automatizacio r		 		|Prueba integral|JUNIO		  |0			 |CARROS NACIO|Pruebas		|

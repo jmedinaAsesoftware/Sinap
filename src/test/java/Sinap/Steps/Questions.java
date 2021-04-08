@@ -32,7 +32,7 @@ public class Questions {
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		File scr = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		String filename = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
-		File dest = new File("C:\\Users\\jmedina\\Documents\\Captura\\screenshot" + filename + ".png");
+		File dest = new File("C:\\Users\\Asesoftware\\Documents\\ASESOFTWARE\\Captura\\screenshot" + filename + ".png");
 		try {
 			FileUtils.copyFile(scr, dest);
 		} catch (IOException e) {
@@ -150,5 +150,14 @@ public class Questions {
 						By.xpath("//div[contains(text(),'¿Está seguro que quiere modificar este calendario?')]"))
 				.getText();
 		Assert.assertEquals("¿Está seguro que quiere modificar este calendario?", mensaje);
+	}
+	
+	@Step
+	public void AssertEdicionCalendarioPagoExitoso() {
+		
+		String mensaje = driver.findElement(By.id("toast-container")).getText();
+		System.out.println(mensaje);
+		Assert.assertEquals("Registo actualizado exitosamente", mensaje);
+		
 	}
 }

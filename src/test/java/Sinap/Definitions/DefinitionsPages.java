@@ -188,4 +188,10 @@ public class DefinitionsPages {
 		this.calendarioPagosPage.EditarDiligenciaFormulario(Nombre, ConceptoDebito, Mes, PlacaTerminada, TipoPlaca,
 				Observaciones);
 	}
+	@Then("^se confirma la edicion del calendario de pago$")
+	public void Confirmar_Editar_Calendario() {
+		this.calendarioPagosPage = new CalendarioPagosPage(driver);
+		this.calendarioPagosPage.ConfirmarModificacionCalendarioPagos();
+	}
 }
+

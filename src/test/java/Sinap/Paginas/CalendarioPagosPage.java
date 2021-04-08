@@ -121,10 +121,11 @@ public class CalendarioPagosPage {
 		questions.impliciWait();
 		questions.AssertConfirmarEdicionCalendarioPago();
 		questions.screenShot();
-		botonesPages.BtnAceptar();
+		botonesPages.BtnAceptarEdicion();
 		questions.impliciWait();
-		questions.AssertCreadoCalendarioPagoExitoso();
+		questions.AssertEdicionCalendarioPagoExitoso();
 		questions.screenShot();
 		elementosPages.CerrarVentana();
+		
 	}
 }

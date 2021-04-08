@@ -289,12 +289,11 @@ public class ListasDesplegablesPages {
 	@Step
 	public void ListaTipoPlacasDos(String TipoPlaca) {
 		clickOnElement(BtnListaTipoPlacasDos);
-		
-		WebElement tipoPlaca = driver.findElement(By.xpath("//span[contains(text(),'" + TipoPlaca + "')]"));
+		questions.impliciWait();
+		WebElement tipoPlaca = driver.findElement(By.xpath("//span[text()='" + TipoPlaca + "']"));
 		questions.impliciWait();
 		tipoPlaca.click();
 		questions.impliciWait();
-
 		WebElement modal = driver.findElement(By.xpath("//div[@role= 'listbox']"));
 		modal.sendKeys(Keys.ESCAPE);
 
@@ -313,8 +312,8 @@ public class ListasDesplegablesPages {
 	@Step
 	public void ListaPlacasTerminadasDos(String PlacaTerminada) {
 		WebElement AsinarPlaca = driver.findElement(
-				By.xpath("//mat-checkbox[@class='mat-checkbox mat-accent ng-star-inserted']//span[contains(text(),'"
-						+ PlacaTerminada + "')]"));
+				By.xpath("//label[@class='mat-checkbox-layout']//span[contains(text(),'" + PlacaTerminada + "')]"));
+		System.out.println(AsinarPlaca);
 		AsinarPlaca.click();
 		questions.impliciWait();
 	}
