@@ -1,7 +1,7 @@
 #Proyecto Sinap
 #29/03/2021
 #Jhonatan Medina Blanco
-@Regresion
+@Regresion1
 Feature: Debe permitir crear concepto de debito (HU_1.4.01)y debe permitir modificar concepto debito (HU_1.4.03)
 Background: 
 	Given abrir el navegador e ingresar a la url 
