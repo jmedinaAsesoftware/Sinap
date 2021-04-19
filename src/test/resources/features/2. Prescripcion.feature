@@ -14,16 +14,16 @@ Scenario Outline: : Creación de prescripciones
 	Then Se confirma la creación 
 	And cerrar el navegador 
 	Examples: 
-		|Nombre		 	|Descripcion		   |TipoConcepto|Concepto				 |PeriodoVigente|Periodo |VigenciaInicio|VigenciaFin|FechaAplicacion|
-		|tres   	    |Pruebas Automatizadas |Débito		|Pruebas Medio  dos		 |1			    |Anual   |2033/04/13	|2034/05/23 |06/12			|
+		|Nombre	 |Descripcion		      |TipoConcepto |Concepto		 	|PeriodoVigente|Periodo |VigenciaInicio|VigenciaFin|FechaAplicacion|
+		|QA 2	 |Pruebas Automat   |Débito		|Prueba integral	|1			   |Anual   |2036/04/13	   |2037/05/23 |06/12			|
 	#	|Prescripcion	|Pruebas Automatizadas |Crédito		|Concepto test	|2			   |Bimestre|2021/03/23	   |2021/07/23 |12/21|
 		
-	
+
 Scenario Outline: Modificar prescripción 
 
 	When Al seleccionar modificar muestra la informacion se modifica el nombre <NombreBuscar> y <Nombre> observacion <Observacion> fecha fin <VigenciaFin> 
 	Then al confirmar la edicion de la prescripcion 
 	And cerrar el navegador 
 	Examples: 
-		|NombreBuscar	|Nombre		  			   |Observacion|VigenciaFin|
-		|tres			|Cambio nombre integracion |Pruebas    |2034/06/23 |
+		|NombreBuscar		|Nombre		  			   |Observacion|VigenciaFin|
+		|QA 2	|Cambio nombre integracion |Pruebas    |2034/06/23 |

@@ -72,6 +72,7 @@ public class CalendarioPagosPage {
 		questions.impliciWait();
 		elementosPages.ScrollCalendarioPagos();
 		listasDesplegablesPages.ListaPlacasTerminadas(PlacaTerminada);
+		questions.impliciWait();
 		listasDesplegablesPages.ListaTipoPlacas(TipoPlaca);
 		questions.screenShot();
 		questions.tiempoSegundos(1);
@@ -114,8 +115,8 @@ public class CalendarioPagosPage {
 		TextoObservaciones.sendKeys(Observaciones);
 		questions.screenShot();
 		botonesPages.BtnGuardarCambios();
-
 	}
+
 	@Step
 	public void ConfirmarModificacionCalendarioPagos() {
 		questions.impliciWait();
@@ -126,6 +127,6 @@ public class CalendarioPagosPage {
 		questions.AssertEdicionCalendarioPagoExitoso();
 		questions.screenShot();
 		elementosPages.CerrarVentana();
-		
+
 	}
 }

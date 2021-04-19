@@ -25,12 +25,6 @@ public class ConceptoDebitoPage {
 
 	@FindBy(how = How.XPATH, using = "//input[@formcontrolname = 'codigoConcepto']")
 	private WebElement TextoCodigoConcepto;
-
-	@FindBy(how = How.XPATH, using = "//input[@formcontrolname = 'codigo']")
-	private WebElement TextoCodigo;
-
-	@FindBy(how = How.XPATH, using = "//input[@formcontrolname = 'nombre']")
-	private WebElement TextoNombre;
 	
 	@FindBy(how = How.XPATH, using = "//textarea[@formcontrolname = 'observaciones']")
 	private WebElement TextoObservaciones;
@@ -104,20 +98,14 @@ public class ConceptoDebitoPage {
 	}
 
 	@Step
-	public void EditarConcepto(String NombreBuscar, String NombreConcepto, String Normativa, String Descripcion,
-			String Multa, String CodigoConcepto, String Registral) {
+	public void EditarConcepto(String NombreBuscar, String Normativa, String Descripcion, String Multa) {
 		
 		questions.screenShot();
 		questions.impliciWait();
 		calendario.scrollBajar(driver);
 		questions.impliciWait();
-		// botonesPages.BtnPagina();
-		questions.impliciWait();
 		questions.screenShot();
 		botonesPages.BtnEditarConceptoDebito(NombreBuscar);
-		questions.impliciWait();
-		TextoNombre.clear();
-		TextoNombre.sendKeys(NombreConcepto);
 		questions.impliciWait();
 		listasDesplegablesPages.BtnListaEditarNormativa(driver, Normativa);
 		questions.impliciWait();
@@ -126,10 +114,6 @@ public class ConceptoDebitoPage {
 		questions.impliciWait();
 		listasDesplegablesPages.ListaDespleMulta(driver, Multa);
 		questions.impliciWait();
-		TextoCodigo.clear();
-		TextoCodigo.sendKeys(CodigoConcepto);
-		questions.impliciWait();
-		listasDesplegablesPages.ListaDebitoRegistral(driver, Registral);
 		questions.screenShot();
 			
 	}

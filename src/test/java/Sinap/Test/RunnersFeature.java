@@ -5,7 +5,7 @@ import cucumber.api.CucumberOptions;
 import net.serenitybdd.cucumber.CucumberWithSerenity;
 
 @RunWith(CucumberWithSerenity.class)
-@CucumberOptions(features = { "src/test/resources/features" }, glue = { "Sinap.Definitions" }, tags = {"@CalendarioPagos"})
+@CucumberOptions(features = { "src/test/resources/features" }, glue = { "Sinap.Definitions" }, tags = {"@Regresion1"})
 
 public class RunnersFeature {
 

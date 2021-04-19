@@ -146,12 +146,11 @@ public class DefinitionsPages {
 		this.conceptoDebitoPage.ConfirmarConceptoDebito();
 	}
 
-	@When("^ingrese a modificar (.*) los campos (.*) lista (.*) descripcion (.*) multa (.*) codigo (.*) debito registral (.*)$")
-	public void modificar(String NombreBuscar, String NombreConcepto, String Normativa, String Descripcion,
-			String Multa, String CodigoConcepto, String Registral) {
+	@When("^ingrese a modificar (.*) los campos lista (.*) descripcion (.*) multa (.*)$")
+	public void modificar(String NombreBuscar, String Normativa, String Descripcion,
+			String Multa) {
 		this.conceptoDebitoPage = new ConceptoDebitoPage(driver);
-		this.conceptoDebitoPage.EditarConcepto(NombreBuscar, NombreConcepto, Normativa, Descripcion, Multa,
-				CodigoConcepto, Registral);
+		this.conceptoDebitoPage.EditarConcepto(NombreBuscar, Normativa, Descripcion, Multa);
 	}
 
 	@And("^observaciones (.*)$")

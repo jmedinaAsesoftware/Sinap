@@ -93,7 +93,6 @@ public class ElementosPages {
 				By.xpath("//mat-dialog-content[@class ='mat-dialog-content ng-star-inserted']"));
 		Actions scrolldown = new Actions(driver);
 		List<WebElement> article = scroll.findElements(By.tagName("button"));
-		System.out.println(article.size());
 		scrolldown.moveToElement(article.get(3)).build().perform();
 		questions.impliciWait();
 	}

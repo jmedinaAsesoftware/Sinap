@@ -183,12 +183,8 @@ public class BotonesPages {
 	public void BtnEditarConceptoDebito(String NombreBuscar) {
 		questions.tiempoSegundos(1);
 		WebElement nombre = driver.findElement(By.xpath("//tr/td[contains(text(),'" + NombreBuscar + "')]"));
-		System.out.println(nombre);
 		questions.tiempoSegundos(1);
 		WebElement btnModificar = nombre.findElement(By.xpath("//i[@mattooltip = 'Modificar']"));
-	//	List<WebElement> btnModificar = nombre.findElements(By.xpath("//i[@mattooltip = 'Modificar']"));
-		System.out.println(btnModificar);
-		//btnModificar.get(2).click();
 		questions.tiempoSegundos(1);
 		btnModificar.click();
 	}
@@ -209,11 +205,10 @@ public class BotonesPages {
 	
 	@Step
 	public void BtnEditarCalendarioPago(String NombreBuscar) {
-		WebElement nombre = driver.findElement(By.xpath("//tr/td[contains(text(),'" + NombreBuscar + "')]"));
+		WebElement td = driver.findElement(By.xpath("//tr/td[contains(text(),'" + NombreBuscar + "')]"));
+		WebElement tr = td.findElement(By.xpath("//i[@mattooltip = 'Editar']"));
 		questions.impliciWait();
-		WebElement btnModificar = nombre.findElement(By.xpath("//i[@mattooltip = 'Editar']"));
-		questions.impliciWait();
-		btnModificar.click();
+		tr.click();
 	}
 	@Step
 	public void BtnAceptarEdicion() {

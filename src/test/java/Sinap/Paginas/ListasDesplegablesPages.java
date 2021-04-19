@@ -71,7 +71,7 @@ public class ListasDesplegablesPages {
 	@FindBy(how = How.XPATH, using = "//mat-select[@formcontrolname = 'conceptoCobro']")
 	private WebElement BtnListaConceptoDebito;
 
-	@FindBy(how = How.XPATH, using = "//mat-select[@class = 'mat-select ng-tns-c103-22 ng-tns-c44-21 ng-star-inserted']")
+	@FindBy(how = How.XPATH, using = "//mat-dialog-content//mat-select[@role = 'combobox']")
 	private WebElement BtnListaConceptoDebitoDos;
 
 	@FindBy(how = How.XPATH, using = "//mat-select[@formcontrolname = 'mes']")
