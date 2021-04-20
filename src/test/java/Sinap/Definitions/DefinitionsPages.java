@@ -27,7 +27,7 @@ public class DefinitionsPages {
 	private ConceptoDebitoPage conceptoDebitoPage = new ConceptoDebitoPage(driver);
 	private CalendarioPagosPage calendarioPagosPage = new CalendarioPagosPage(driver);
 
-//se realiza el llamado para ser interpetado por lenguaje gherkin .
+//se realiza el llamado para ser interpetado por lenguaje gherkin..
 	@Given("^abrir el navegador e ingresar a la url$")
 	public void abrir_navegador() {
 		this.conexion = new Conexion();
