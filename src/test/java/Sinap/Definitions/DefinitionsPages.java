@@ -31,7 +31,7 @@ public class DefinitionsPages {
 	@Given("^abrir el navegador e ingresar a la url$")
 	public void abrir_navegador() {
 		this.conexion = new Conexion();
-		this.driver = this.conexion.abrirNavegador();
+		this.driver =this.conexion.abrirNavegador();
 
 	}
 
