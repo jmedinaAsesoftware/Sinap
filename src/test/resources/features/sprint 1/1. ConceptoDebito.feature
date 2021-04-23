@@ -14,7 +14,7 @@ Scenario Outline: : Crear concepto debito
 	And cerrar el navegador 
 	Examples: 
 		|NombreConcepto		  		  |Normativa				|Descripcion		   |Multa|CodigoConcepto|Registral|
-		|pruebas yyy  		  		  |decreprb 				|Prueba fechas		   |Si	 |pddd			|No		  |
+		|pruebas yyyxx 		  		  |decreprb 				|Prueba fechas		   |Si	 |pdoik5		|No		  |
 
 @Regresion
 Scenario Outline:: Modificar concepto debito

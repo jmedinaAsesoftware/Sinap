@@ -12,7 +12,6 @@ public class Conexion {
 
 	@Before
 	@Step
-	
 	public WebDriver abrirNavegador() {
 		// driver de chrome para su ejecución
 		System.setProperty("webdriver.chrome.driver", "Drivers/chromedriver.exe");
@@ -21,6 +20,6 @@ public class Conexion {
 		driver.navigate().to("http://10.45.22.124:8000/Aplicaciones/sinap-web");
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		return this.driver;
-
+		
 	}
 }
