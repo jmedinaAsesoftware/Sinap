@@ -5,7 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
-
 import Sinap.Steps.Questions;
 import net.thucydides.core.annotations.Step;
 
@@ -18,6 +17,9 @@ public class CrearMultasPage {
 	@FindBy(how = How.XPATH, using = "//input[@formcontrolname = 'nombreMulta']")
 	private WebElement TextoNombreMulta;
 
+	@FindBy(how = How.XPATH, using = "//textarea[@formcontrolname = 'descripcion']")
+	private WebElement TextoDescripcion;
+
 	@FindBy(how = How.XPATH, using = "//input[@formcontrolname = 'valorMinimo']")
 	private WebElement TextoValorMinmo;
 
@@ -26,6 +28,9 @@ public class CrearMultasPage {
 
 	@FindBy(how = How.XPATH, using = "//input[@formcontrolname = 'valor']")
 	private WebElement TextoValor;
+
+	@FindBy(how = How.XPATH, using = "//input[@formcontrolname = 'modoCobroPorcentaje']")
+	private WebElement TextoModoCobroPorcentaje;
 
 	public CrearMultasPage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
@@ -56,16 +61,24 @@ public class CrearMultasPage {
 
 //metodo para diligenciar el formulario hasta municipio
 	@Step
-	public void FormularioMultas(String NombreMulta, String ConceptoCobro, String Departamento, String Municipio) {
+	public void FormularioMultas(String NombreMulta, String Descripcion, String ConceptoCobro, String Tarifa,
+			String ModoCobro, String Porcentaje) {
 
 		questions.impliciWait();
 		questions.screenShot();
 		TextoNombreMulta.sendKeys(NombreMulta);
-		listasDesplegablesPages.ListaConceptoCobro(driver, ConceptoCobro);
+		TextoDescripcion.sendKeys(Descripcion);
 		questions.impliciWait();
-		listasDesplegablesPages.ListaDepartamento(driver, Departamento);
-		questions.impliciWait();
-		listasDesplegablesPages.ListaMunicipio(driver, Municipio);
+		listasDesplegablesPages.ListaConceptoCobro(ConceptoCobro);
+		listasDesplegablesPages.BtnListaTipoTarifa(Tarifa);
+		listasDesplegablesPages.ListaModoCobro(ModoCobro);
+		if (ModoCobro.equals("Porcentaje")) {
+
+			questions.impliciWait();
+			TextoModoCobroPorcentaje.sendKeys(Porcentaje);
+
+		}
+		questions.screenShot();
 
 	}
 
@@ -79,7 +92,7 @@ public class CrearMultasPage {
 		questions.impliciWait();
 		listasDesplegablesPages.ListaTipoVehiculo(driver, TipoVehiculo);
 		questions.impliciWait();
-		listasDesplegablesPages.ListaModoCobro(driver, ModoCobro);
+		listasDesplegablesPages.ListaModoCobro(ModoCobro);
 		questions.screenShot();
 		questions.impliciWait();
 		TextoValorMinmo.sendKeys(ValorMinimo);
@@ -95,4 +108,5 @@ public class CrearMultasPage {
 		botonesPages.BtnCrearMulta();
 		questions.screenShot();
 	}
+
 }

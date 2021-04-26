@@ -83,6 +83,9 @@ public class ListasDesplegablesPages {
 	@FindBy(how = How.XPATH, using = "//mat-select[@formcontrolname = 'tipoPlaca']")
 	private WebElement BtnListaTipoPlacasDos;
 
+	@FindBy(how = How.XPATH, using = "//mat-select[@formcontrolname = 'tarifa']")
+	private WebElement BtnListaTipoTarifa;
+	
 	public ListasDesplegablesPages(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 		this.driver = driver;
@@ -115,9 +118,10 @@ public class ListasDesplegablesPages {
 	}
 
 	@Step
-	public void ListaConceptoCobro(WebDriver driver, String ConceptoCobro) {
+	public void ListaConceptoCobro(String ConceptoCobro) {
 
 		clickOnElement(BtnListaConceptoCobro);
+		questions.impliciWait();
 		WebElement conceptoCobro = driver.findElement(By.xpath("//span[contains(text(),'" + ConceptoCobro + "')]"));
 		conceptoCobro.click();
 	}
@@ -157,11 +161,11 @@ public class ListasDesplegablesPages {
 	}
 
 	@Step
-	public void ListaModoCobro(WebDriver driver, String ModoCobro) {
-
+	public void ListaModoCobro(String ModoCobro) {
 		clickOnElement(BtnListaModoCobro);
 		WebElement modoCobro = driver.findElement(By.xpath("//span[contains(text(),'" + ModoCobro + "')]"));
 		modoCobro.click();
+		questions.impliciWait();
 	}
 
 	@Step
@@ -313,8 +317,16 @@ public class ListasDesplegablesPages {
 	public void ListaPlacasTerminadasDos(String PlacaTerminada) {
 		WebElement AsinarPlaca = driver.findElement(
 				By.xpath("//label[@class='mat-checkbox-layout']//span[contains(text(),'" + PlacaTerminada + "')]"));
-		System.out.println(AsinarPlaca);
 		AsinarPlaca.click();
+		questions.impliciWait();
+	}
+
+	@Step
+	public void BtnListaTipoTarifa(String Tarifa) {
+		questions.tiempoSegundos(1);
+		clickOnElement(BtnListaTipoTarifa);
+		WebElement tarifa = driver.findElement(By.xpath("//mat-option//span[contains(text(),'" + Tarifa + "')]"));
+		tarifa.click();
 		questions.impliciWait();
 	}
 }
