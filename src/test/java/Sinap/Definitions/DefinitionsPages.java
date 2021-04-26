@@ -31,7 +31,7 @@ public class DefinitionsPages {
 	@Given("^abrir el navegador e ingresar a la url$")
 	public void abrir_navegador() {
 		this.conexion = new Conexion();
-		this.driver =this.conexion.abrirNavegador();
+		this.driver = this.conexion.abrirNavegador();
 
 	}
 
@@ -68,21 +68,23 @@ public class DefinitionsPages {
 
 	}
 
-	@When("^Al diligenciar el nombre de la multa (.*) seleccionar concepto de cobro (.*) departamento (.*) munucipio (.*)$")
-	public void Diligenciar_Formulario_Crear_Multas(String NombreMulta, String ConceptoCobro, String Departamento,
-			String Municipio) {
+	@When("^Al diligenciar el nombre de la multa (.*) descripcion (.*) seleccionar concepto de cobro (.*) tarifa aplicable (.*) modo cobro (.*) porcentaje (.*)$")
+	public void Diligenciar_Formulario_Crear_Multas(String NombreMulta, String Descripcion, String ConceptoCobro,
+			String Tarifa, String ModoCobro, String Porcentaje) {
 		this.crearMultasPage = new CrearMultasPage(driver);
-		this.crearMultasPage.FormularioMultas(NombreMulta, ConceptoCobro, Departamento, Municipio);
+		this.crearMultasPage.FormularioMultas(NombreMulta, Descripcion, ConceptoCobro, Tarifa, ModoCobro, Porcentaje);
 
 	}
 
-	@And("Seleccionar tipo placa (.*) tipo vehiculo (.*) modo cobro (.*) valor Min (.*) Valor Max (.*) periocidad (.*) cuotas (.*) valor (.*)")
-	public void Diligenciar_Formulario_Crear_Multas_Segunda(String TipoPlaca, String TipoVehiculo, String ModoCobro,
-			String ValorMinimo, String ValorMaximo, String Periocidad, String Cuota, String Valor) {
-		this.crearMultasPage = new CrearMultasPage(driver);
-		this.crearMultasPage.FormularioMultasSegunda(TipoPlaca, TipoVehiculo, ModoCobro, ValorMinimo, ValorMaximo,
-				Periocidad, Cuota, Valor);
-	}
+	/*
+	 * @And("Seleccionar tipo placa (.*) tipo vehiculo (.*) modo cobro (.*) valor Min (.*) Valor Max (.*) periocidad (.*) cuotas (.*) valor (.*)"
+	 * ) public void Diligenciar_Formulario_Crear_Multas_Segunda(String TipoPlaca,
+	 * String TipoVehiculo, String ModoCobro, String ValorMinimo, String
+	 * ValorMaximo, String Periocidad, String Cuota, String Valor) {
+	 * this.crearMultasPage = new CrearMultasPage(driver);
+	 * this.crearMultasPage.FormularioMultasSegunda(TipoPlaca, TipoVehiculo,
+	 * ModoCobro, ValorMinimo, ValorMaximo, Periocidad, Cuota, Valor); }
+	 */
 
 	@And("^Al hacer clic en gestion de paramaetros y prescripcion$")
 	public void Crear_Prescripcion() {
@@ -147,8 +149,7 @@ public class DefinitionsPages {
 	}
 
 	@When("^ingrese a modificar (.*) los campos lista (.*) descripcion (.*) multa (.*)$")
-	public void modificar(String NombreBuscar, String Normativa, String Descripcion,
-			String Multa) {
+	public void modificar(String NombreBuscar, String Normativa, String Descripcion, String Multa) {
 		this.conceptoDebitoPage = new ConceptoDebitoPage(driver);
 		this.conceptoDebitoPage.EditarConcepto(NombreBuscar, Normativa, Descripcion, Multa);
 	}
@@ -187,10 +188,10 @@ public class DefinitionsPages {
 		this.calendarioPagosPage.EditarDiligenciaFormulario(Nombre, ConceptoDebito, Mes, PlacaTerminada, TipoPlaca,
 				Observaciones);
 	}
+
 	@Then("^se confirma la edicion del calendario de pago$")
 	public void Confirmar_Editar_Calendario() {
 		this.calendarioPagosPage = new CalendarioPagosPage(driver);
 		this.calendarioPagosPage.ConfirmarModificacionCalendarioPagos();
 	}
 }
-
