@@ -80,7 +80,7 @@ public class CrearMultasPage {
 			TextoModoCobroPorcentaje.sendKeys(Porcentaje);
 			questions.screenShot();
 			listasDesplegablesPages.BtnListaModoCobroConcepto(ConceptoBase);
-// agrego 
+
 			if (ConceptoBase.equals("Valor del vehículo")) {
 				questions.impliciWait();
 				elementosPages.ScrollCrearMulta();
@@ -114,6 +114,7 @@ public class CrearMultasPage {
 		
 		//botonesPages.BtnActivar();
 		
+		//cambios jhontana
 		
 	}
 }
