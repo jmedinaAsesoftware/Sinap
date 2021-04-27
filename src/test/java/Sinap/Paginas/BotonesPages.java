@@ -47,9 +47,6 @@ public class BotonesPages {
 	@FindBy(how = How.XPATH, using = "//mat-slide-toggle[@formcontrolname = 'estado']")
 	private WebElement BtnActivar;
 
-	@FindBy(how = How.XPATH, using = "//button[@type = 'submit']")
-	private WebElement BtnCrearMulta;
-
 	@FindBy(how = How.XPATH, using = "//tbody/tr/td[contains(text(),'fechas')]")
 	private WebElement BtnEditarPrescripcionFormulario;
 
@@ -148,11 +145,6 @@ public class BotonesPages {
 	@Step
 	public void BtnActivar() {
 		clickOnElement(BtnActivar);
-	}
-
-	@Step
-	public void BtnCrearMulta() {
-		clickOnElement(BtnCrearMulta);
 	}
 
 	@Step

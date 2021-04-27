@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
+
+import Sinap.Steps.ElementosPages;
 import Sinap.Steps.Questions;
 import net.thucydides.core.annotations.Step;
 
@@ -13,6 +15,7 @@ public class CrearMultasPage {
 	private Questions questions;
 	private ListasDesplegablesPages listasDesplegablesPages;
 	private BotonesPages botonesPages;
+	private ElementosPages elementosPages;
 
 	@FindBy(how = How.XPATH, using = "//input[@formcontrolname = 'nombreMulta']")
 	private WebElement TextoNombreMulta;
@@ -20,17 +23,14 @@ public class CrearMultasPage {
 	@FindBy(how = How.XPATH, using = "//textarea[@formcontrolname = 'descripcion']")
 	private WebElement TextoDescripcion;
 
-	@FindBy(how = How.XPATH, using = "//input[@formcontrolname = 'valorMinimo']")
-	private WebElement TextoValorMinmo;
-
-	@FindBy(how = How.XPATH, using = "//input[@formcontrolname = 'valorMaximo']")
-	private WebElement TextoValorMaximo;
-
-	@FindBy(how = How.XPATH, using = "//input[@formcontrolname = 'valor']")
-	private WebElement TextoValor;
-
 	@FindBy(how = How.XPATH, using = "//input[@formcontrolname = 'modoCobroPorcentaje']")
 	private WebElement TextoModoCobroPorcentaje;
+
+	@FindBy(how = How.XPATH, using = "//input[@formcontrolname = 'modoCobroVehiculoFijo']")
+	private WebElement TextoModoCobroVehiculoFijo;
+
+	@FindBy(how = How.XPATH, using = "//input[@formcontrolname = 'valorMinimoCuota']")
+	private WebElement TextoValorMinimoCuota;
 
 	public CrearMultasPage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
@@ -38,6 +38,7 @@ public class CrearMultasPage {
 		listasDesplegablesPages = new ListasDesplegablesPages(driver);
 		botonesPages = new BotonesPages(driver);
 		questions = new Questions(driver);
+		elementosPages = new ElementosPages(driver);
 
 	}
 
@@ -55,6 +56,7 @@ public class CrearMultasPage {
 		botonesPages.BtnMultas();
 		questions.impliciWait();
 		questions.screenShot();
+		questions.impliciWait();
 		botonesPages.BtnCrearFormulario();
 
 	}
@@ -62,7 +64,7 @@ public class CrearMultasPage {
 //metodo para diligenciar el formulario hasta municipio
 	@Step
 	public void FormularioMultas(String NombreMulta, String Descripcion, String ConceptoCobro, String Tarifa,
-			String ModoCobro, String Porcentaje) {
+			String ModoCobro, String Porcentaje, String ConceptoBase, String ValorVehiculo, String Valor) {
 
 		questions.impliciWait();
 		questions.screenShot();
@@ -76,37 +78,42 @@ public class CrearMultasPage {
 
 			questions.impliciWait();
 			TextoModoCobroPorcentaje.sendKeys(Porcentaje);
+			questions.screenShot();
+			listasDesplegablesPages.BtnListaModoCobroConcepto(ConceptoBase);
+
+			if (ConceptoBase.equals("Valor del vehículo")) {
+				questions.impliciWait();
+				elementosPages.ScrollCrearMulta();
+				listasDesplegablesPages.BtnListaModoCobroVehiculo(ValorVehiculo);
+				questions.impliciWait();
+
+				if (ValorVehiculo.equals("Mayor o igual a") || ValorVehiculo.equals("Menor o igual a")) {
+					questions.impliciWait();
+					elementosPages.ScrollCrearMulta();
+					TextoModoCobroVehiculoFijo.sendKeys(Valor);
+					questions.screenShot();
+
+				}
+
+			}
 
 		}
-		questions.screenShot();
 
 	}
 
 	// metodo para diligenciar el formulario hasta el final
 	@Step
-	public void FormularioMultasSegunda(String TipoPlaca, String TipoVehiculo, String ModoCobro, String ValorMinimo,
-			String ValorMaximo, String Periocidad, String Cuota, String Valor) {
+	public void FormularioMultasSegunda(String ValorMinimo) {
+		elementosPages.ScrollCrearMulta();
+		TextoValorMinimoCuota.sendKeys(ValorMinimo);
+		questions.screenShot();
 
-		questions.impliciWait();
-		listasDesplegablesPages.ListaTipoPlaca(driver, TipoPlaca);
-		questions.impliciWait();
-		listasDesplegablesPages.ListaTipoVehiculo(driver, TipoVehiculo);
-		questions.impliciWait();
-		listasDesplegablesPages.ListaModoCobro(ModoCobro);
-		questions.screenShot();
-		questions.impliciWait();
-		TextoValorMinmo.sendKeys(ValorMinimo);
-		TextoValorMaximo.sendKeys(ValorMaximo);
-		questions.impliciWait();
-		listasDesplegablesPages.ListaPeriocidad(driver, Periocidad);
-		questions.impliciWait();
-		listasDesplegablesPages.ListCuotas(driver, Cuota);
-		questions.impliciWait();
-		TextoValor.sendKeys(Valor);
-		botonesPages.BtnActivar();
-		questions.screenShot();
-		botonesPages.BtnCrearMulta();
-		questions.screenShot();
+		//listasDesplegablesPages.ListaTipoVehiculo(driver, TipoVehiculo);
+		//listasDesplegablesPages.ListaModoCobro(ModoCobro);
+		//listasDesplegablesPages.ListaPeriocidad(driver, Periocidad);
+		
+		//botonesPages.BtnActivar();
+		
+		
 	}
-
 }
