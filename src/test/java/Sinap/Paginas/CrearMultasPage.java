@@ -16,7 +16,8 @@ public class CrearMultasPage {
 	private ListasDesplegablesPages listasDesplegablesPages;
 	private BotonesPages botonesPages;
 	private ElementosPages elementosPages;
-
+	
+	//Cambios Claudia pruebas git 
 	@FindBy(how = How.XPATH, using = "//input[@formcontrolname = 'nombreMulta']")
 	private WebElement TextoNombreMulta;
 

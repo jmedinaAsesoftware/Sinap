@@ -19,10 +19,11 @@ public class ListasDesplegablesPages {
 
 	@FindBy(how = How.ID, using = "mat-select-value-3")
 	private WebElement BtnListaTipoPeriodo;
+	//Pruebas Git
 // cambios jhontan
 	@FindBy(how = How.XPATH, using = "//mat-select[@formcontrolname ='concepto']")
 	private WebElement BtnListaConceptoDeDebito;
-
+// cambios Claudia
 	@FindBy(how = How.XPATH, using = "//mat-select[@formcontrolname = 'conceptoCobro']")
 	private WebElement BtnListaConceptoCobro;
 
