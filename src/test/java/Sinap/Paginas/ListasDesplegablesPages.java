@@ -32,9 +32,6 @@ public class ListasDesplegablesPages {
 	@FindBy(how = How.XPATH, using = "//mat-select[@formcontrolname = 'municipio']")
 	private WebElement BtnListaMunicipio;
 
-	@FindBy(how = How.XPATH, using = "//mat-select[@formcontrolname = 'tipoPlaca']")
-	private WebElement BtnListaTipoPlaca;
-
 	@FindBy(how = How.XPATH, using = "//mat-select[@formcontrolname = 'tipoVehiculo']")
 	private WebElement BtnListaTipoVehiculo;
 
@@ -43,9 +40,6 @@ public class ListasDesplegablesPages {
 
 	@FindBy(how = How.XPATH, using = "//mat-select[@formcontrolname = 'periodicidad']")
 	private WebElement BtnListaPeriocidad;
-
-	@FindBy(how = How.XPATH, using = "//mat-select[@formcontrolname = 'cuotas']")
-	private WebElement BtnListaCuotas;
 
 	@FindBy(how = How.XPATH, using = "//mat-select[@formcontrolname = 'tipoConcepto']")
 	private WebElement BtnListaTipoConcepto;
@@ -85,7 +79,16 @@ public class ListasDesplegablesPages {
 
 	@FindBy(how = How.XPATH, using = "//mat-select[@formcontrolname = 'tarifa']")
 	private WebElement BtnListaTipoTarifa;
-	
+
+	@FindBy(how = How.XPATH, using = "//mat-select[@formcontrolname = 'modoCobroConcepto']")
+	private WebElement BtnListaModoCobroConcepto;
+
+	@FindBy(how = How.XPATH, using = "//mat-select[@formcontrolname = 'modoCobroVehiculo']")
+	private WebElement BtnListaModoCobroVehiculo;
+
+	@FindBy(how = How.XPATH, using = "//input[@formcontrolname = 'modoCobroVehiculoFijo']")
+	private WebElement BtnListaModoCobroVehiculoFijo;
+
 	public ListasDesplegablesPages(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 		this.driver = driver;
@@ -144,15 +147,6 @@ public class ListasDesplegablesPages {
 	}
 
 	@Step
-	public void ListaTipoPlaca(WebDriver driver, String TipoPlaca) {
-
-		clickOnElement(BtnListaTipoPlaca);
-		WebElement tipoPlaca = driver.findElement(By.xpath("//span[contains(text(),'" + TipoPlaca + "')]"));
-		tipoPlaca.click();
-
-	}
-
-	@Step
 	public void ListaTipoVehiculo(WebDriver driver, String TipoVehiculo) {
 
 		clickOnElement(BtnListaTipoVehiculo);
@@ -174,14 +168,6 @@ public class ListasDesplegablesPages {
 		clickOnElement(BtnListaPeriocidad);
 		WebElement periocidad = driver.findElement(By.xpath("//span[contains(text(),'" + Periocidad + "')]"));
 		periocidad.click();
-	}
-
-	@Step
-	public void ListCuotas(WebDriver driver, String Cuota) {
-		clickOnElement(BtnListaCuotas);
-		WebElement cuota = driver.findElement(By.xpath("//span[contains(text(),'" + Cuota + "')]"));
-		cuota.click();
-
 	}
 
 	@Step
@@ -329,4 +315,33 @@ public class ListasDesplegablesPages {
 		tarifa.click();
 		questions.impliciWait();
 	}
+
+	@Step
+	public void BtnListaModoCobroConcepto(String ConceptoBase) {
+		questions.impliciWait();
+		clickOnElement(BtnListaModoCobroConcepto);
+		WebElement conceptoBase = driver
+				.findElement(By.xpath("//mat-option//span[contains(text(),'" + ConceptoBase + "')]"));
+		conceptoBase.click();
+		questions.impliciWait();
+	}
+
+	@Step
+	public void BtnListaModoCobroVehiculo(String ValorVehiculo) {
+		questions.impliciWait();
+		clickOnElement(BtnListaModoCobroVehiculo);
+		WebElement valorVehiculo = driver
+				.findElement(By.xpath("//mat-option//span[contains(text(),'" + ValorVehiculo + "')]"));
+		valorVehiculo.click();
+		questions.impliciWait();
+	}
+
+	/*
+	 * @Step public void BtnListaModoCobroVehiculoFijo(String Valor) {
+	 * questions.impliciWait(); clickOnElement(BtnListaModoCobroVehiculoFijo);
+	 * WebElement valor =
+	 * driver.findElement(By.xpath("//mat-option//span[contains(text(),'" + Valor +
+	 * "')]")); valor.click(); questions.impliciWait(); }
+	 */
+
 }

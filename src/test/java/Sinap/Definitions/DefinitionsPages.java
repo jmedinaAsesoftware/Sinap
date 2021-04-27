@@ -68,23 +68,22 @@ public class DefinitionsPages {
 
 	}
 
-	@When("^Al diligenciar el nombre de la multa (.*) descripcion (.*) seleccionar concepto de cobro (.*) tarifa aplicable (.*) modo cobro (.*) porcentaje (.*)$")
+	@When("^Al diligenciar el nombre de la multa (.*) descripcion (.*) seleccionar concepto de cobro (.*) tarifa aplicable (.*) modo cobro (.*) porcentaje (.*) concepto base (.*) valor Vehiculo (.*) valor (.*)$")
 	public void Diligenciar_Formulario_Crear_Multas(String NombreMulta, String Descripcion, String ConceptoCobro,
-			String Tarifa, String ModoCobro, String Porcentaje) {
+			String Tarifa, String ModoCobro, String Porcentaje, String ConceptoBase, String ValorVehiculo,
+			String Valor) {
 		this.crearMultasPage = new CrearMultasPage(driver);
-		this.crearMultasPage.FormularioMultas(NombreMulta, Descripcion, ConceptoCobro, Tarifa, ModoCobro, Porcentaje);
+		this.crearMultasPage.FormularioMultas(NombreMulta, Descripcion, ConceptoCobro, Tarifa, ModoCobro, Porcentaje,
+				ConceptoBase, ValorVehiculo, Valor);
 
 	}
 
-	/*
-	 * @And("Seleccionar tipo placa (.*) tipo vehiculo (.*) modo cobro (.*) valor Min (.*) Valor Max (.*) periocidad (.*) cuotas (.*) valor (.*)"
-	 * ) public void Diligenciar_Formulario_Crear_Multas_Segunda(String TipoPlaca,
-	 * String TipoVehiculo, String ModoCobro, String ValorMinimo, String
-	 * ValorMaximo, String Periocidad, String Cuota, String Valor) {
-	 * this.crearMultasPage = new CrearMultasPage(driver);
-	 * this.crearMultasPage.FormularioMultasSegunda(TipoPlaca, TipoVehiculo,
-	 * ModoCobro, ValorMinimo, ValorMaximo, Periocidad, Cuota, Valor); }
-	 */
+	
+	  @And("diligenciar (.*)") 
+	  public void Diligenciar_Formulario_Crear_Multas_Segunda(String ValorMinimo) {
+	  this.crearMultasPage = new CrearMultasPage(driver);
+	  this.crearMultasPage.FormularioMultasSegunda(ValorMinimo); }
+	 
 
 	@And("^Al hacer clic en gestion de paramaetros y prescripcion$")
 	public void Crear_Prescripcion() {
