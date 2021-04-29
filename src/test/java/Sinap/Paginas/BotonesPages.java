@@ -73,6 +73,9 @@ public class BotonesPages {
 	
 	@FindBy(how = How.XPATH, using = "//button[@class = 'swal2-confirm swal2-styled']")
 	private WebElement BtnAceptarEdicion;
+	
+	@FindBy(how = How.XPATH, using = "//span[contains(text(),'Normativas')]")
+	private WebElement BtnNormativas;
 
 	public BotonesPages(WebDriver driver) {
 		PageFactory.initElements(driver, this);
