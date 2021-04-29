@@ -33,6 +33,15 @@ public class CrearMultasPage {
 	@FindBy(how = How.XPATH, using = "//input[@formcontrolname = 'valorMinimoCuota']")
 	private WebElement TextoValorMinimoCuota;
 
+	@FindBy(how = How.XPATH, using = "//input[@formcontrolname = 'valorMaximoCuota']")
+	private WebElement TextoValorMaximoCuota;
+
+	@FindBy(how = How.XPATH, using = "//input[@formcontrolname = 'modoCobroMontoMinimo']")
+	private WebElement TextoMontoMinimo;
+
+	@FindBy(how = How.XPATH, using = "//form/div/mat-form-field/div/div[1]/div/input")
+	private WebElement TextoCuota;
+
 	public CrearMultasPage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 		this.driver = driver;
@@ -65,7 +74,8 @@ public class CrearMultasPage {
 //metodo para diligenciar el formulario hasta municipio
 	@Step
 	public void FormularioMultas(String NombreMulta, String Descripcion, String ConceptoCobro, String Tarifa,
-			String ModoCobro, String Porcentaje, String ConceptoBase, String ValorVehiculo, String Valor) {
+			String ModoCobro, String Porcentaje, String ConceptoBase, String ValorVehiculo, String Valor,
+			String ValorMinimo, String MontoMinimo, String ValorMaximo) {
 
 		questions.impliciWait();
 		questions.screenShot();
@@ -73,6 +83,7 @@ public class CrearMultasPage {
 		TextoDescripcion.sendKeys(Descripcion);
 		questions.impliciWait();
 		listasDesplegablesPages.ListaConceptoCobro(ConceptoCobro);
+		questions.impliciWait();
 		listasDesplegablesPages.BtnListaTipoTarifa(Tarifa);
 		listasDesplegablesPages.ListaModoCobro(ModoCobro);
 		if (ModoCobro.equals("Porcentaje")) {
@@ -98,24 +109,65 @@ public class CrearMultasPage {
 
 			}
 
+			TextoValorMinimoCuota.sendKeys(ValorMinimo);
+			TextoMontoMinimo.sendKeys(MontoMinimo);
+
+		} else {
+			TextoValorMaximoCuota.sendKeys(ValorMaximo);
+			questions.screenShot();
 		}
 
 	}
 
 	// metodo para diligenciar el formulario hasta el final
 	@Step
-	public void FormularioMultasSegunda(String ValorMinimo) {
+	public void FormularioMultasSegunda(String Periocidad, String Cuota, String TipoVehiculo, String TipoPlaca) {
+		questions.impliciWait();
 		elementosPages.ScrollCrearMulta();
-		TextoValorMinimoCuota.sendKeys(ValorMinimo);
+		listasDesplegablesPages.ListaPeriocidad(Periocidad);
+
+		if (Periocidad.equals("Especifico")) {
+
+			questions.impliciWait();
+			elementosPages.ScrollCrearMultaDos();
+			questions.impliciWait();
+			elementosPages.BtnCalendarioCrearMultaInicio();
+			elementosPages.BtnCalendarioCrearMultaFin();
+			questions.screenShot();
+			elementosPages.ScrollCrearMultaTres();
+			listasDesplegablesPages.ListaTipoVehiculo(TipoVehiculo);
+			TextoCuota.sendKeys(Cuota);
+		}
+
+		listasDesplegablesPages.ListaTipoPlacasTres(TipoPlaca);
 		questions.screenShot();
 
-		//listasDesplegablesPages.ListaTipoVehiculo(driver, TipoVehiculo);
-		//listasDesplegablesPages.ListaModoCobro(ModoCobro);
-		//listasDesplegablesPages.ListaPeriocidad(driver, Periocidad);
-		
-		//botonesPages.BtnActivar();
-		
-		//cambios jhontana
-		
+	}
+
+	@Step
+	public void FormularioMultasTercero(String Departamento, String Municipio) {
+
+		elementosPages.ScrollCrearMultaCuarto();
+		questions.screenShot();
+		questions.impliciWait();
+		botonesPages.BtnAsignarMunicipios();
+		questions.impliciWait();
+		questions.screenShot();
+		questions.impliciWait();
+		listasDesplegablesPages.BtnListaAsociarDepartamento(Departamento);
+		listasDesplegablesPages.BtnListaAsociarMunicipio(Municipio);
+		questions.screenShot();
+		botonesPages.BtnAsociar();
+		questions.impliciWait();
+		questions.screenShot();
+
+	}
+
+	@Step
+	public void ConfirmarCreacion() {
+		botonesPages.BtnCrearMulta();
+		questions.impliciWait();
+		questions.screenShot();
+		questions.AssertCrearMulta();
 	}
 }

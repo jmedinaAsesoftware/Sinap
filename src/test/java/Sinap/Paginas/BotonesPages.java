@@ -44,9 +44,6 @@ public class BotonesPages {
 	@FindBy(how = How.XPATH, using = "//span[contains(text(),'Aceptar')]")
 	private WebElement BtnAceptar;
 
-	@FindBy(how = How.XPATH, using = "//mat-slide-toggle[@formcontrolname = 'estado']")
-	private WebElement BtnActivar;
-
 	@FindBy(how = How.XPATH, using = "//tbody/tr/td[contains(text(),'fechas')]")
 	private WebElement BtnEditarPrescripcionFormulario;
 
@@ -64,15 +61,24 @@ public class BotonesPages {
 
 	@FindBy(how = How.XPATH, using = "//span[contains(text(),'Guardar cambios')]")
 	private WebElement BtnGuardarCambios;
-	
+
 	@FindBy(how = How.XPATH, using = "//span[contains(text(),'Calendarios de pagos')]")
 	private WebElement BtnCalendarioPagos;
-	
-	@FindBy( how = How.XPATH, using = "//span[contains(text(),'Crear calendario')]")
+
+	@FindBy(how = How.XPATH, using = "//span[contains(text(),'Crear calendario')]")
 	private WebElement BtnCrearCalendarioFormulario;
-	
+
 	@FindBy(how = How.XPATH, using = "//button[@class = 'swal2-confirm swal2-styled']")
 	private WebElement BtnAceptarEdicion;
+
+	@FindBy(how = How.XPATH, using = "//button//span[contains(text(),'Asignar municipios*')]")
+	private WebElement BtnAsignarMunicipios;
+
+	@FindBy(how = How.XPATH, using = "//button//span[contains(text(),'Asociar')]")
+	private WebElement BtnAsociar;
+
+	@FindBy(how = How.XPATH, using = "//mat-dialog-container//button//span[contains(text(),'Crear multa')]")
+	private WebElement BtnCrearMulta;
 
 	public BotonesPages(WebDriver driver) {
 		PageFactory.initElements(driver, this);
@@ -143,11 +149,6 @@ public class BotonesPages {
 	}
 
 	@Step
-	public void BtnActivar() {
-		clickOnElement(BtnActivar);
-	}
-
-	@Step
 	public void BtnEditarPrescripcionFormulario(String NombreBuscar) {
 		WebElement Nombre = driver.findElement(By.xpath("//tbody/tr/td[contains(text(),'" + NombreBuscar + "')]"));
 		WebElement btnModificar = Nombre.findElement(By.xpath("//i[@mattooltip = 'Modificar']"));
@@ -184,17 +185,17 @@ public class BotonesPages {
 	public void BtnGuardarCambios() {
 		clickOnElement(BtnGuardarCambios);
 	}
-	
+
 	public void BtnCalendarioPagos() {
 		clickOnElement(BtnCalendarioPagos);
 		questions.tiempoSegundos(1);
 	}
-	
+
 	public void BtnCrearCalendarioFormulario() {
 		clickOnElement(BtnCrearCalendarioFormulario);
 		questions.impliciWait();
 	}
-	
+
 	@Step
 	public void BtnEditarCalendarioPago(String NombreBuscar) {
 		WebElement td = driver.findElement(By.xpath("//tr/td[contains(text(),'" + NombreBuscar + "')]"));
@@ -202,9 +203,28 @@ public class BotonesPages {
 		questions.impliciWait();
 		tr.click();
 	}
+
 	@Step
 	public void BtnAceptarEdicion() {
 		clickOnElement(BtnAceptarEdicion);
-		questions.tiempoSegundos(1);	
+		questions.tiempoSegundos(1);
+	}
+
+	@Step
+	public void BtnAsignarMunicipios() {
+		clickOnElement(BtnAsignarMunicipios);
+		questions.tiempoSegundos(1);
+	}
+
+	@Step
+	public void BtnAsociar() {
+		clickOnElement(BtnAsociar);
+		questions.impliciWait();
+	}
+
+	@Step
+	public void BtnCrearMulta() {
+		clickOnElement(BtnCrearMulta);
+		questions.tiempoSegundos(1);
 	}
 }
