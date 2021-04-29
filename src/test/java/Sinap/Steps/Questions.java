@@ -52,7 +52,7 @@ public class Questions {
 
 	@Step
 	public void impliciWait() {
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 
 	@Step
@@ -113,49 +113,55 @@ public class Questions {
 				.getText();
 		Assert.assertEquals("¿Está seguro que quiere modificar este concepto?", mensaje);
 	}
-	
+
 	@Step
 	public void AssertConceptoDebitoEditadoExitoso() {
 
 		String mensaje = driver.findElement(By.id("toast-container")).getText();
 		Assert.assertEquals("Registro actualizado exitosamente!", mensaje);
-		
+
 	}
-	
+
 	@Step
 	public void AssertConfirmarCalendarioPago() {
 
 		String mensaje = driver
-				.findElement(
-						By.xpath("//article[contains(text(),'¿Está seguro que quiere crear este calendario de pago?')]"))
+				.findElement(By
+						.xpath("//article[contains(text(),'¿Está seguro que quiere crear este calendario de pago?')]"))
 				.getText();
 		Assert.assertEquals("¿Está seguro que quiere crear este calendario de pago?", mensaje);
 	}
-	
+
 	@Step
 	public void AssertCreadoCalendarioPagoExitoso() {
-		
+
 		String mensaje = driver.findElement(By.id("toast-container")).getText();
-		
+
 		Assert.assertEquals("Calendario creado satisfactoriamente.", mensaje);
-		
+
 	}
-	
+
 	@Step
 	public void AssertConfirmarEdicionCalendarioPago() {
 
 		String mensaje = driver
-				.findElement(
-						By.xpath("//div[contains(text(),'¿Está seguro que quiere modificar este calendario?')]"))
+				.findElement(By.xpath("//div[contains(text(),'¿Está seguro que quiere modificar este calendario?')]"))
 				.getText();
 		Assert.assertEquals("¿Está seguro que quiere modificar este calendario?", mensaje);
 	}
-	
+
 	@Step
 	public void AssertEdicionCalendarioPagoExitoso() {
-		
+
 		String mensaje = driver.findElement(By.id("toast-container")).getText();
 		Assert.assertEquals("Registo actualizado exitosamente", mensaje);
-		
+
+	}
+
+	@Step
+	public void AssertCrearMulta() {
+		String mensaje = driver.findElement(By.id("toast-container")).getText();
+		Assert.assertEquals("Guardado exitoso", mensaje);
+
 	}
 }

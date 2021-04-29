@@ -68,22 +68,33 @@ public class DefinitionsPages {
 
 	}
 
-	@When("^Al diligenciar el nombre de la multa (.*) descripcion (.*) seleccionar concepto de cobro (.*) tarifa aplicable (.*) modo cobro (.*) porcentaje (.*) concepto base (.*) valor Vehiculo (.*) valor (.*)$")
+	@When("^Al diligenciar el nombre de la multa (.*) descripcion (.*) seleccionar concepto de cobro (.*) tarifa aplicable (.*) modo cobro (.*) porcentaje (.*) concepto base (.*) valor Vehiculo (.*) valor (.*) valor minimo (.*) monto minimo (.*) valor maximo (.*)$")
 	public void Diligenciar_Formulario_Crear_Multas(String NombreMulta, String Descripcion, String ConceptoCobro,
-			String Tarifa, String ModoCobro, String Porcentaje, String ConceptoBase, String ValorVehiculo,
-			String Valor) {
+			String Tarifa, String ModoCobro, String Porcentaje, String ConceptoBase, String ValorVehiculo, String Valor,
+			String ValorMinimo, String MontoMinimo, String ValorMaximo) {
 		this.crearMultasPage = new CrearMultasPage(driver);
 		this.crearMultasPage.FormularioMultas(NombreMulta, Descripcion, ConceptoCobro, Tarifa, ModoCobro, Porcentaje,
-				ConceptoBase, ValorVehiculo, Valor);
+				ConceptoBase, ValorVehiculo, Valor, ValorMinimo, MontoMinimo, ValorMaximo);
 
 	}
 
+	@And("diligenciar periocidad (.*) cuota (.*) tipo vehiculo (.*) tipo placa (.*)")
+	public void Diligenciar_Formulario_Crear_Multas_Segunda(String Periocidad, String Cuota, String TipoVehiculo, String TipoPlaca) {
+		this.crearMultasPage = new CrearMultasPage(driver);
+		this.crearMultasPage.FormularioMultasSegunda(Periocidad, Cuota, TipoVehiculo, TipoPlaca);
+	}
 	
-	  @And("diligenciar (.*)") 
-	  public void Diligenciar_Formulario_Crear_Multas_Segunda(String ValorMinimo) {
-	  this.crearMultasPage = new CrearMultasPage(driver);
-	  this.crearMultasPage.FormularioMultasSegunda(ValorMinimo); }
-	 
+	@And("^al asignar los municipios y selecciona el departamento (.*) y municipio (.*)$")
+	public void Diligenciar_Formulario_Crear_Multas_Tercero(String Departamento, String Municipio) {
+		this.crearMultasPage = new CrearMultasPage(driver);
+		this.crearMultasPage.FormularioMultasTercero(Departamento, Municipio);
+	}
+	
+	@Then("^Se confirma la creacion de la multa$")
+	public void ConfirmarCreacionMulta() {
+		this.crearMultasPage = new CrearMultasPage(driver);
+		this.crearMultasPage.ConfirmarCreacion();
+	}
 
 	@And("^Al hacer clic en gestion de paramaetros y prescripcion$")
 	public void Crear_Prescripcion() {
@@ -193,4 +204,5 @@ public class DefinitionsPages {
 		this.calendarioPagosPage = new CalendarioPagosPage(driver);
 		this.calendarioPagosPage.ConfirmarModificacionCalendarioPagos();
 	}
+	
 }

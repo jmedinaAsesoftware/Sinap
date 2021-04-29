@@ -7,6 +7,7 @@ Background:
 	Given abrir el navegador e ingresar a la url 
 	And Al hacer clic en parametros y conceptos de debito 
 	
+	
 Scenario Outline: : Crear concepto debito 
 
 	When Al diligenciar los campos nombre <NombreConcepto> y seleccionar normativa <Normativa> Descripcion <Descripcion> multa <Multa> codigo <CodigoConcepto> Debito registral <Registral> 
