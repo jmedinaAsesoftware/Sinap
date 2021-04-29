@@ -22,7 +22,7 @@ public class ListasDesplegablesPages {
 
 	@FindBy(how = How.XPATH, using = "//mat-select[@formcontrolname ='concepto']")
 	private WebElement BtnListaConceptoDeDebito;
-
+// cambios Claudia
 	@FindBy(how = How.XPATH, using = "//mat-select[@formcontrolname = 'conceptoCobro']")
 	private WebElement BtnListaConceptoCobro;
 
