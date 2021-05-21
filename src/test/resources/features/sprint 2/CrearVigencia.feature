@@ -1,7 +1,7 @@
 #Proyecto Sinap
 #15/03/2021
 #Jhonatan Medina Blanco
-@Regresion
+@Ejecucion1
 Feature: Ingresar a la pagina de Sinap y crear una vigencia 
 Background:
 
@@ -17,7 +17,7 @@ Scenario Outline: crear vigencia con periodo amnistia
 		Examples: 
 		|NombrePeriodo			|TipoPeriodo		|Concepto|
 		|Jhonatan total	Q1		|Período de vigencia||
-		|Jhonatan total Q2		|Período de vigencia||
+		#|Jhonatan total Q2		|Período de vigencia||
 		#|Jhonatan total			|Período de amnistía|
 		
 #Scenario Outline: crear vigencia con periodo 

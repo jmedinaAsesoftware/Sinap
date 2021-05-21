@@ -17,9 +17,12 @@ public class ListasDesplegablesPages {
 	private WebDriver driver;
 	private Questions questions;
 
-	@FindBy(how = How.ID, using = "mat-select-value-3")
-	private WebElement BtnListaTipoPeriodo;
+	/*@FindBy(how = How.ID, using = "mat-option-6")//mat-option-6 //mat-select-value-3
+	private WebElement BtnListaTipoPeriodo;*/
 	
+	@FindBy(how = How.XPATH, using = "//mat-select[@formcontrolname ='tipoPeriodo']")
+	private WebElement BtnListaTipoPeriodo;
+
 	@FindBy(how = How.XPATH, using = "//mat-select[@formcontrolname ='concepto']")
 	private WebElement BtnListaConceptoDeDebito;
 
@@ -44,7 +47,7 @@ public class ListasDesplegablesPages {
 	@FindBy(how = How.XPATH, using = "//mat-select[@formcontrolname = 'tipoConcepto']")
 	private WebElement BtnListaTipoConcepto;
 
-	@FindBy(how = How.XPATH, using = "//mat-select[@formcontrolname = 'idTiempo']")
+	@FindBy(how = How.XPATH, using = "//mat-select[@formcontrolname = 'idTiempo']")//tipoPeriodo //
 	private WebElement BtnListaPeriodo;
 
 	@FindBy(how = How.XPATH, using = "//mat-select[@formcontrolname = 'normativa']")
@@ -89,6 +92,15 @@ public class ListasDesplegablesPages {
 	@FindBy(how = How.XPATH, using = "//input[@formcontrolname = 'modoCobroVehiculoFijo']")
 	private WebElement BtnListaModoCobroVehiculoFijo;
 
+	@FindBy(how = How.XPATH, using = "//mat-chip-list[@data-mat-chip-input= 'mat-chip-list-input-0']")
+	private WebElement BtnListaAsociarDepartamento;
+
+	@FindBy(how = How.XPATH, using = "//mat-chip-list[@data-mat-chip-input= 'mat-chip-list-input-1']")
+	private WebElement BtnListaAsociarMunicipio;
+	
+	@FindBy(how = How.XPATH, using = "//mat-select[@formcontrolname = 'documento']")
+	private WebElement BtnListaDocumento;
+
 	public ListasDesplegablesPages(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 		this.driver = driver;
@@ -126,6 +138,7 @@ public class ListasDesplegablesPages {
 		clickOnElement(BtnListaConceptoCobro);
 		questions.impliciWait();
 		WebElement conceptoCobro = driver.findElement(By.xpath("//span[contains(text(),'" + ConceptoCobro + "')]"));
+		questions.impliciWait();
 		conceptoCobro.click();
 	}
 
@@ -147,7 +160,7 @@ public class ListasDesplegablesPages {
 	}
 
 	@Step
-	public void ListaTipoVehiculo(WebDriver driver, String TipoVehiculo) {
+	public void ListaTipoVehiculo(String TipoVehiculo) {
 
 		clickOnElement(BtnListaTipoVehiculo);
 		WebElement tipoVehiculo = driver.findElement(By.xpath("//span[contains(text(),'" + TipoVehiculo + "')]"));
@@ -163,7 +176,7 @@ public class ListasDesplegablesPages {
 	}
 
 	@Step
-	public void ListaPeriocidad(WebDriver driver, String Periocidad) {
+	public void ListaPeriocidad(String Periocidad) {
 
 		clickOnElement(BtnListaPeriocidad);
 		WebElement periocidad = driver.findElement(By.xpath("//span[contains(text(),'" + Periocidad + "')]"));
@@ -336,12 +349,53 @@ public class ListasDesplegablesPages {
 		questions.impliciWait();
 	}
 
-	/*
-	 * @Step public void BtnListaModoCobroVehiculoFijo(String Valor) {
-	 * questions.impliciWait(); clickOnElement(BtnListaModoCobroVehiculoFijo);
-	 * WebElement valor =
-	 * driver.findElement(By.xpath("//mat-option//span[contains(text(),'" + Valor +
-	 * "')]")); valor.click(); questions.impliciWait(); }
-	 */
+	@Step
+	public void ListaTipoPlacasTres(String TipoPlaca) {
+		clickOnElement(BtnListaTipoPlacasDos);
+		questions.impliciWait();
+		WebElement tipoPlaca = driver.findElement(By.xpath("//mat-option//span[contains(text(),'" + TipoPlaca + "')]"));
+		questions.impliciWait();
+		tipoPlaca.click();
+		questions.impliciWait();
+	}
 
+	@Step
+	public void BtnListaAsociarDepartamento(String Departamento) {
+		clickOnElement(BtnListaAsociarDepartamento);
+		questions.impliciWait();
+		BtnListaAsociarDepartamento.sendKeys(Departamento);
+		questions.impliciWait();
+		WebElement selectDepartamento = driver.findElement(By.xpath("//div[@role = 'listbox']//mat-option"));
+		questions.impliciWait();
+		selectDepartamento.click();
+
+	}
+
+	@Step
+	public void BtnListaAsociarMunicipio(String Municipio) {
+		questions.impliciWait();
+		clickOnElement(BtnListaAsociarMunicipio);
+		questions.impliciWait();
+
+		BtnListaAsociarDepartamento.sendKeys(Municipio);
+		questions.impliciWait();
+		WebElement selectMunicipio = driver.findElement(By.xpath("//div[@role = 'listbox']//mat-option"));
+		questions.impliciWait();
+		selectMunicipio.click();
+		questions.impliciWait();
+	}
+	
+	@Step
+	public void BtnListaDocumento(String Documento) {
+		questions.impliciWait();
+		clickOnElement(BtnListaDocumento);
+		questions.impliciWait();
+
+		BtnListaDocumento.sendKeys(Documento);
+		questions.impliciWait();
+		WebElement selectDocumento = driver.findElement(By.xpath("//mat-option//span[contains(text(),'" + Documento + "')]"));
+		questions.impliciWait();
+		selectDocumento.click();
+		questions.impliciWait();
+	}
 }

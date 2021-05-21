@@ -26,6 +26,9 @@ public class ElementosPages {
 	@FindBy(how = How.XPATH, using = "//div[@class ='mat-calendar-body-cell-content mat-focus-indicator']")
 	private WebElement BtnDay;
 
+	@FindBy(how = How.XPATH, using = "//app-multa-crear//button[@class ='mat-focus-indicator mat-icon-button mat-button-base']")
+	private WebElement BtnIconoCalendarioCrearMulta;
+	
 	
 	public ElementosPages(WebDriver driver) {
 		PageFactory.initElements(driver, this);
@@ -116,4 +119,72 @@ public class ElementosPages {
 		scrolldown.moveToElement(article.get(6)).build().perform();
 		questions.impliciWait();
 	}
+	@Step
+	public void ScrollCrearMultaDos() {
+		WebElement scroll = driver.findElement(
+				By.xpath("//mat-dialog-content[@class ='mat-dialog-content mat-typography custom-scrollbar']"));
+		Actions scrolldown = new Actions(driver);
+		List<WebElement> article = scroll.findElements(By.tagName("article"));
+		scrolldown.moveToElement(article.get(7)).build().perform();
+		questions.impliciWait();
+	}
+	
+	@Step
+	public void ScrollCrearMultaTres() {
+		WebElement scroll = driver.findElement(
+				By.xpath("//mat-dialog-content[@class ='mat-dialog-content mat-typography custom-scrollbar']"));
+		Actions scrolldown = new Actions(driver);
+		List<WebElement> article = scroll.findElements(By.tagName("article"));
+		scrolldown.moveToElement(article.get(8)).build().perform();
+		questions.impliciWait();
+	}
+	
+	@Step
+	public void ScrollCrearMultaCuarto() {
+		WebElement scroll = driver.findElement(
+				By.xpath("//mat-dialog-content[@class ='mat-dialog-content mat-typography custom-scrollbar']"));
+		Actions scrolldown = new Actions(driver);
+		List<WebElement> article = scroll.findElements(By.tagName("article"));
+		scrolldown.moveToElement(article.get(9)).build().perform();
+		questions.impliciWait();
+	}
+	
+	@Step
+	public void BtnCalendarioCrearMultaFin() {
+		clickOnElement(BtnIconoCalendarioCrearMulta);
+		clickOnElement(BtnNextMonth);
+		clickOnElement(BtnDay);
+		questions.impliciWait();
+	}
+	
+	@Step
+	public void BtnCalendarioCrearMultaInicio() {
+		clickOnElement(BtnIconoCalendarioCrearMulta);
+		clickOnElement(BtnDay);
+		questions.impliciWait();
+	}
+	
+	@Step
+	public void BtnCalendarioNormativaPublicacion() {
+		List<WebElement> botones = driver.findElements(By.xpath("//mat-datepicker-toggle//button"));
+		botones.get(0).click();
+		clickOnElement(BtnDay);
+		questions.impliciWait();
+	}
+	
+	@Step
+	public void BtnCalendarioNormativaInicio() {
+		List<WebElement> botones = driver.findElements(By.xpath("//mat-datepicker-toggle//button"));
+		botones.get(1).click();
+		clickOnElement(BtnDay);		
+	}
+	
+	@Step
+	public void BtnCalendarioNormativaFin() {
+		List<WebElement> botones = driver.findElements(By.xpath("//mat-datepicker-toggle//button"));
+		botones.get(2).click();
+		clickOnElement(BtnNextMonth);
+		clickOnElement(BtnDay);
+	}
+	
 }

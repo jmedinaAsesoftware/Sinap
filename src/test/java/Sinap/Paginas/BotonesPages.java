@@ -44,9 +44,6 @@ public class BotonesPages {
 	@FindBy(how = How.XPATH, using = "//span[contains(text(),'Aceptar')]")
 	private WebElement BtnAceptar;
 
-	@FindBy(how = How.XPATH, using = "//mat-slide-toggle[@formcontrolname = 'estado']")
-	private WebElement BtnActivar;
-
 	@FindBy(how = How.XPATH, using = "//tbody/tr/td[contains(text(),'fechas')]")
 	private WebElement BtnEditarPrescripcionFormulario;
 
@@ -64,19 +61,42 @@ public class BotonesPages {
 
 	@FindBy(how = How.XPATH, using = "//span[contains(text(),'Guardar cambios')]")
 	private WebElement BtnGuardarCambios;
-	
+
 	@FindBy(how = How.XPATH, using = "//span[contains(text(),'Calendarios de pagos')]")
 	private WebElement BtnCalendarioPagos;
-	
-	@FindBy( how = How.XPATH, using = "//span[contains(text(),'Crear calendario')]")
+
+	@FindBy(how = How.XPATH, using = "//span[contains(text(),'Crear calendario')]")
 	private WebElement BtnCrearCalendarioFormulario;
-	
+
 	@FindBy(how = How.XPATH, using = "//button[@class = 'swal2-confirm swal2-styled']")
 	private WebElement BtnAceptarEdicion;
 	
 	@FindBy(how = How.XPATH, using = "//span[contains(text(),'Normativas')]")
 	private WebElement BtnNormativas;
 
+	@FindBy(how = How.XPATH, using = "//button//span[contains(text(),'Asignar municipios*')]")
+	private WebElement BtnAsignarMunicipios;
+
+	@FindBy(how = How.XPATH, using = "//button//span[contains(text(),'Asociar')]")
+	private WebElement BtnAsociar;
+
+	@FindBy(how = How.XPATH, using = "//mat-dialog-container//button//span[contains(text(),'Crear multa')]")
+	private WebElement BtnCrearMulta;
+	
+	@FindBy(how = How.XPATH, using = "//button//span[text()='Crear Normativa']")
+	private WebElement BtnCrearNormativa;
+	
+	@FindBy(how = How.XPATH, using = "//button//span[text()='Crear']")
+	private WebElement BtnCrear;
+	
+	@FindBy(how = How.XPATH, using = "//button//span[contains(text(),'Aceptar')]")
+	private WebElement BtnAceptarCrearNormativa;
+	
+	@FindBy(how = How.XPATH, using = "//button//span[contains(text(),'Guardar cambios')]")
+	private WebElement BtnGuardarCambiosNormativa;
+	
+	
+	
 	public BotonesPages(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 		this.driver = driver;
@@ -146,11 +166,6 @@ public class BotonesPages {
 	}
 
 	@Step
-	public void BtnActivar() {
-		clickOnElement(BtnActivar);
-	}
-
-	@Step
 	public void BtnEditarPrescripcionFormulario(String NombreBuscar) {
 		WebElement Nombre = driver.findElement(By.xpath("//tbody/tr/td[contains(text(),'" + NombreBuscar + "')]"));
 		WebElement btnModificar = Nombre.findElement(By.xpath("//i[@mattooltip = 'Modificar']"));
@@ -187,17 +202,17 @@ public class BotonesPages {
 	public void BtnGuardarCambios() {
 		clickOnElement(BtnGuardarCambios);
 	}
-	
+
 	public void BtnCalendarioPagos() {
 		clickOnElement(BtnCalendarioPagos);
 		questions.tiempoSegundos(1);
 	}
-	
+
 	public void BtnCrearCalendarioFormulario() {
 		clickOnElement(BtnCrearCalendarioFormulario);
 		questions.impliciWait();
 	}
-	
+
 	@Step
 	public void BtnEditarCalendarioPago(String NombreBuscar) {
 		WebElement td = driver.findElement(By.xpath("//tr/td[contains(text(),'" + NombreBuscar + "')]"));
@@ -205,9 +220,68 @@ public class BotonesPages {
 		questions.impliciWait();
 		tr.click();
 	}
+
 	@Step
 	public void BtnAceptarEdicion() {
 		clickOnElement(BtnAceptarEdicion);
-		questions.tiempoSegundos(1);	
+		questions.tiempoSegundos(1);
 	}
+	
+	@Step
+	public void BtnNormativas() {
+		clickOnElement(BtnNormativas);
+	}
+
+	@Step
+	public void BtnAsignarMunicipios() {
+		clickOnElement(BtnAsignarMunicipios);
+		questions.tiempoSegundos(1);
+	}
+
+	@Step
+	public void BtnAsociar() {
+		clickOnElement(BtnAsociar);
+		questions.impliciWait();
+	}
+
+	@Step
+	public void BtnCrearMulta() {
+		clickOnElement(BtnCrearMulta);
+		questions.tiempoSegundos(1);
+	}
+	
+	@Step
+	public void BtnCrearNormativa() {
+		clickOnElement(BtnCrearNormativa);
+		questions.tiempoSegundos(1);
+	}
+	
+	@Step
+	public void BtnCrear() {
+		clickOnElement(BtnCrear);
+		questions.tiempoSegundos(1);
+	}
+	
+	@Step
+	public void BtnAceptarCrearNormativa() {
+		clickOnElement(BtnAceptarCrearNormativa);
+		questions.tiempoSegundos(1);
+	}
+	
+	@Step
+	public void BtnEditarNormativa(String NombreBuscar) {
+		questions.tiempoSegundos(1);
+		WebElement nombre = driver.findElement(By.xpath("//tbody/tr/td[contains(text(),'" + NombreBuscar + "')]"));
+		questions.tiempoSegundos(1);
+		WebElement btnModificar = nombre.findElement(By.xpath("//i[@mattooltip = 'Modificar']"));
+		questions.tiempoSegundos(1);
+		btnModificar.click();		
+	}
+	
+	@Step
+	public void BtnGuardarCambiosNormativa() {
+		clickOnElement(BtnGuardarCambiosNormativa);
+		questions.tiempoSegundos(1);		
+	}
+		
 }
