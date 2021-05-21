@@ -29,6 +29,7 @@ public class ElementosPages {
 	@FindBy(how = How.XPATH, using = "//app-multa-crear//button[@class ='mat-focus-indicator mat-icon-button mat-button-base']")
 	private WebElement BtnIconoCalendarioCrearMulta;
 	
+	
 	public ElementosPages(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 		this.driver = driver;
@@ -162,5 +163,28 @@ public class ElementosPages {
 		clickOnElement(BtnDay);
 		questions.impliciWait();
 	}
-
+	
+	@Step
+	public void BtnCalendarioNormativaPublicacion() {
+		List<WebElement> botones = driver.findElements(By.xpath("//mat-datepicker-toggle//button"));
+		botones.get(0).click();
+		clickOnElement(BtnDay);
+		questions.impliciWait();
+	}
+	
+	@Step
+	public void BtnCalendarioNormativaInicio() {
+		List<WebElement> botones = driver.findElements(By.xpath("//mat-datepicker-toggle//button"));
+		botones.get(1).click();
+		clickOnElement(BtnDay);		
+	}
+	
+	@Step
+	public void BtnCalendarioNormativaFin() {
+		List<WebElement> botones = driver.findElements(By.xpath("//mat-datepicker-toggle//button"));
+		botones.get(2).click();
+		clickOnElement(BtnNextMonth);
+		clickOnElement(BtnDay);
+	}
+	
 }

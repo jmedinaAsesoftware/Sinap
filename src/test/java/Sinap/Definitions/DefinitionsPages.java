@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import Sinap.Paginas.CalendarioPagosPage;
 import Sinap.Paginas.ConceptoDebitoPage;
 import Sinap.Paginas.CrearMultasPage;
+import Sinap.Paginas.CrearNormativaPage;
 import Sinap.Paginas.CrearVigenciasPage;
 import Sinap.Paginas.PrescripcionesPage;
 import Sinap.Steps.ElementosPages;
@@ -26,6 +27,7 @@ public class DefinitionsPages {
 	private ElementosPages calendario = new ElementosPages(driver);
 	private ConceptoDebitoPage conceptoDebitoPage = new ConceptoDebitoPage(driver);
 	private CalendarioPagosPage calendarioPagosPage = new CalendarioPagosPage(driver);
+	private CrearNormativaPage crearNormativaPage = new CrearNormativaPage(driver);
 
 //se realiza el llamado para ser interpetado por lenguaje gherkin..
 	@Given("^abrir el navegador e ingresar a la url$")
@@ -205,4 +207,33 @@ public class DefinitionsPages {
 		this.calendarioPagosPage.ConfirmarModificacionCalendarioPagos();
 	}
 	
+	@And ("^Al hacer clic en gestion de parametros y normativas$")
+	public void Crear_Normativa() {
+		this.crearNormativaPage = new CrearNormativaPage(driver);
+		this.crearNormativaPage.CrearNormativa();			
+	}
+	
+	@When("^Al seleccionar el documento (.*) diligenciar nombre normativa (.*) descripcion (.*)$")
+	public void Diligenciar_Formulario_Normativa(String Documento, String NombreNormativa, String DescripcionNormativa) {
+		this.crearNormativaPage = new CrearNormativaPage(driver);
+		this.crearNormativaPage.FormularioNormativa(Documento, NombreNormativa, DescripcionNormativa);
+	}
+	
+	@Then ("^Se confirma la creacion de la normativa$")
+	public void Confirmar_Crear_Normativa() {
+		this.crearNormativaPage = new CrearNormativaPage(driver);
+		this.crearNormativaPage.ConfirmarCreacion();
+	}
+	
+	@When("^Ingrese a modificar (.*) los campos nombre normativa (.*) descripcion (.*)$")
+	public void Editar_Formulario_Normativa(String NombreBuscar, String NombreNormativa, String DescripcionNormativa) {
+		this.crearNormativaPage = new CrearNormativaPage(driver);
+		this.crearNormativaPage.EditarNormativa(NombreBuscar, NombreNormativa, DescripcionNormativa);
+	}
+	
+	@Then ("^Se confirma la edicion de la normativa$")
+	public void Confirmar_Editar_Normativa() {
+		this.crearNormativaPage = new CrearNormativaPage(driver);
+		this.crearNormativaPage.ConfirmarEdicion();
+	}
 }

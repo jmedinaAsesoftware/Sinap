@@ -17,12 +17,15 @@ public class ListasDesplegablesPages {
 	private WebDriver driver;
 	private Questions questions;
 
-	@FindBy(how = How.ID, using = "mat-select-value-3")
+	/*@FindBy(how = How.ID, using = "mat-option-6")//mat-option-6 //mat-select-value-3
+	private WebElement BtnListaTipoPeriodo;*/
+	
+	@FindBy(how = How.XPATH, using = "//mat-select[@formcontrolname ='tipoPeriodo']")
 	private WebElement BtnListaTipoPeriodo;
 
 	@FindBy(how = How.XPATH, using = "//mat-select[@formcontrolname ='concepto']")
 	private WebElement BtnListaConceptoDeDebito;
-// cambios Claudia
+
 	@FindBy(how = How.XPATH, using = "//mat-select[@formcontrolname = 'conceptoCobro']")
 	private WebElement BtnListaConceptoCobro;
 
@@ -44,7 +47,7 @@ public class ListasDesplegablesPages {
 	@FindBy(how = How.XPATH, using = "//mat-select[@formcontrolname = 'tipoConcepto']")
 	private WebElement BtnListaTipoConcepto;
 
-	@FindBy(how = How.XPATH, using = "//mat-select[@formcontrolname = 'idTiempo']")
+	@FindBy(how = How.XPATH, using = "//mat-select[@formcontrolname = 'idTiempo']")//tipoPeriodo //
 	private WebElement BtnListaPeriodo;
 
 	@FindBy(how = How.XPATH, using = "//mat-select[@formcontrolname = 'normativa']")
@@ -94,6 +97,9 @@ public class ListasDesplegablesPages {
 
 	@FindBy(how = How.XPATH, using = "//mat-chip-list[@data-mat-chip-input= 'mat-chip-list-input-1']")
 	private WebElement BtnListaAsociarMunicipio;
+	
+	@FindBy(how = How.XPATH, using = "//mat-select[@formcontrolname = 'documento']")
+	private WebElement BtnListaDocumento;
 
 	public ListasDesplegablesPages(WebDriver driver) {
 		PageFactory.initElements(driver, this);
@@ -376,6 +382,20 @@ public class ListasDesplegablesPages {
 		WebElement selectMunicipio = driver.findElement(By.xpath("//div[@role = 'listbox']//mat-option"));
 		questions.impliciWait();
 		selectMunicipio.click();
+		questions.impliciWait();
+	}
+	
+	@Step
+	public void BtnListaDocumento(String Documento) {
+		questions.impliciWait();
+		clickOnElement(BtnListaDocumento);
+		questions.impliciWait();
+
+		BtnListaDocumento.sendKeys(Documento);
+		questions.impliciWait();
+		WebElement selectDocumento = driver.findElement(By.xpath("//mat-option//span[contains(text(),'" + Documento + "')]"));
+		questions.impliciWait();
+		selectDocumento.click();
 		questions.impliciWait();
 	}
 }

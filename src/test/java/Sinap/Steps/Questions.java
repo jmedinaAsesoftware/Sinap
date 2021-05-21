@@ -32,7 +32,7 @@ public class Questions {
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		File scr = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		String filename = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
-		File dest = new File("C:\\Users\\jmedina\\Documents\\Captura\\screenshot" + filename + ".png");
+		File dest = new File("C:\\Users\\Asesoftware\\Documents\\ASESOFTWARE\\Captura\\screenshot" + filename + ".png");
 		try {
 			FileUtils.copyFile(scr, dest);
 		} catch (IOException e) {
@@ -164,4 +164,39 @@ public class Questions {
 		Assert.assertEquals("Guardado exitoso", mensaje);
 
 	}
+	
+	@Step
+	public void AssertConfirmarCrearNormativa() {
+
+		String mensaje = driver
+				.findElement(By
+						.xpath("//article[contains(text(),'¿Está seguro que quiere crear esta normativa?')]"))
+				.getText();
+		Assert.assertEquals("¿Está seguro que quiere crear esta normativa?", mensaje);
+	}
+	
+	@Step
+	public void AssertCrearNormativa() {
+		String mensaje = driver.findElement(By.id("toast-container")).getText();
+		Assert.assertEquals("Normativa creada satisfactoriamente.", mensaje);
+
+	}
+	
+	@Step
+	public void AssertConfirmarEditarNormativa() {
+
+		String mensaje = driver
+				.findElement(By
+						.xpath("//article[contains(text(),'¿Está seguro que quiere modificar esta normativa?')]"))
+				.getText();
+		Assert.assertEquals("¿Está seguro que quiere modificar esta normativa?", mensaje);
+	}
+	
+	@Step
+	public void AssertEditarNormativa() {
+		String mensaje = driver.findElement(By.id("toast-container")).getText();
+		Assert.assertEquals("Normativa actualizada satisfactoriamente.", mensaje);
+
+	}
+	
 }

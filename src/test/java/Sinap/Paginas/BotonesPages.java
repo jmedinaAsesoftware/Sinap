@@ -70,6 +70,9 @@ public class BotonesPages {
 
 	@FindBy(how = How.XPATH, using = "//button[@class = 'swal2-confirm swal2-styled']")
 	private WebElement BtnAceptarEdicion;
+	
+	@FindBy(how = How.XPATH, using = "//span[contains(text(),'Normativas')]")
+	private WebElement BtnNormativas;
 
 	@FindBy(how = How.XPATH, using = "//button//span[contains(text(),'Asignar municipios*')]")
 	private WebElement BtnAsignarMunicipios;
@@ -79,7 +82,21 @@ public class BotonesPages {
 
 	@FindBy(how = How.XPATH, using = "//mat-dialog-container//button//span[contains(text(),'Crear multa')]")
 	private WebElement BtnCrearMulta;
-
+	
+	@FindBy(how = How.XPATH, using = "//button//span[text()='Crear Normativa']")
+	private WebElement BtnCrearNormativa;
+	
+	@FindBy(how = How.XPATH, using = "//button//span[text()='Crear']")
+	private WebElement BtnCrear;
+	
+	@FindBy(how = How.XPATH, using = "//button//span[contains(text(),'Aceptar')]")
+	private WebElement BtnAceptarCrearNormativa;
+	
+	@FindBy(how = How.XPATH, using = "//button//span[contains(text(),'Guardar cambios')]")
+	private WebElement BtnGuardarCambiosNormativa;
+	
+	
+	
 	public BotonesPages(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 		this.driver = driver;
@@ -209,6 +226,11 @@ public class BotonesPages {
 		clickOnElement(BtnAceptarEdicion);
 		questions.tiempoSegundos(1);
 	}
+	
+	@Step
+	public void BtnNormativas() {
+		clickOnElement(BtnNormativas);
+	}
 
 	@Step
 	public void BtnAsignarMunicipios() {
@@ -227,4 +249,39 @@ public class BotonesPages {
 		clickOnElement(BtnCrearMulta);
 		questions.tiempoSegundos(1);
 	}
+	
+	@Step
+	public void BtnCrearNormativa() {
+		clickOnElement(BtnCrearNormativa);
+		questions.tiempoSegundos(1);
+	}
+	
+	@Step
+	public void BtnCrear() {
+		clickOnElement(BtnCrear);
+		questions.tiempoSegundos(1);
+	}
+	
+	@Step
+	public void BtnAceptarCrearNormativa() {
+		clickOnElement(BtnAceptarCrearNormativa);
+		questions.tiempoSegundos(1);
+	}
+	
+	@Step
+	public void BtnEditarNormativa(String NombreBuscar) {
+		questions.tiempoSegundos(1);
+		WebElement nombre = driver.findElement(By.xpath("//tbody/tr/td[contains(text(),'" + NombreBuscar + "')]"));
+		questions.tiempoSegundos(1);
+		WebElement btnModificar = nombre.findElement(By.xpath("//i[@mattooltip = 'Modificar']"));
+		questions.tiempoSegundos(1);
+		btnModificar.click();		
+	}
+	
+	@Step
+	public void BtnGuardarCambiosNormativa() {
+		clickOnElement(BtnGuardarCambiosNormativa);
+		questions.tiempoSegundos(1);		
+	}
+		
 }
