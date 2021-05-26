@@ -40,7 +40,7 @@ public class DefinitionsPages {
 	@And("^Al hacer clic en parametros y calendario$")
 	public void crear_vigencia() throws IOException {
 		this.gestionParametrosPage = new CrearVigenciasPage(driver);
-		this.gestionParametrosPage.CrearVigencia();
+		this.gestionParametrosPage.llegarVigenciaM();
 
 	}
 
@@ -146,12 +146,11 @@ public class DefinitionsPages {
 		this.conceptoDebitoPage.CrearConceptoDebito();
 	}
 
-	@When("^Al diligenciar los campos nombre (.*) y seleccionar normativa (.*) Descripcion (.*) multa (.*) codigo (.*) Debito registral (.*)$")
+	@When("^Al diligenciar los campos nombre (.*) seleccionar normativa (.*) diligenciar la descripcion (.*) seleccionar si tiene multa (.*) seleccionar el concepto (.*) y seleccionar si es debito registral (.*)$")
 	public void Diligenciar_Formulario_Concepto_Debito(String NombreConcepto, String Normativa, String Descripcion,
-			String Multa, String CodigoConcepto, String Registral) {
+			String Multa, String Concepto, /*String TipoConcepto,*/ String Registral) {
 		this.conceptoDebitoPage = new ConceptoDebitoPage(driver);
-		this.conceptoDebitoPage.FormularioConcetoDebito(NombreConcepto, Normativa, Descripcion, Multa, CodigoConcepto,
-				Registral);
+		this.conceptoDebitoPage.FormularioConceptoDebito(NombreConcepto, Normativa, Descripcion, Multa, Concepto, /*TipoConcepto,*/ Registral);
 	}
 
 	@Then("^al confirmar la creacion del concepto debito$")
@@ -225,15 +224,27 @@ public class DefinitionsPages {
 		this.crearNormativaPage.ConfirmarCreacion();
 	}
 	
-	@When("^Ingrese a modificar (.*) los campos nombre normativa (.*) descripcion (.*)$")
-	public void Editar_Formulario_Normativa(String NombreBuscar, String NombreNormativa, String DescripcionNormativa) {
+	@When("^Ingrese a modificar (.*) los campos nombre normativa (.*) descripcion (.*) observaciones(.*)$")
+	public void Editar_Formulario_Normativa(String NombreBuscar, String NombreNormativa, String DescripcionNormativa, String Observaciones) {
 		this.crearNormativaPage = new CrearNormativaPage(driver);
-		this.crearNormativaPage.EditarNormativa(NombreBuscar, NombreNormativa, DescripcionNormativa);
+		this.crearNormativaPage.EditarNormativa(NombreBuscar, NombreNormativa, DescripcionNormativa, Observaciones);
 	}
 	
 	@Then ("^Se confirma la edicion de la normativa$")
 	public void Confirmar_Editar_Normativa() {
 		this.crearNormativaPage = new CrearNormativaPage(driver);
 		this.crearNormativaPage.ConfirmarEdicion();
+	}
+	
+	@When("^Ingrese a modificar (.*) los campos nombre periodo (.*) observaciones (.*)$")
+	public void Editar_Formulario_Vigencia(String NombreBuscar, String NombrePeriodo, String Observaciones) {
+		this.gestionParametrosPage = new CrearVigenciasPage(driver);
+		this.gestionParametrosPage.EditarVigencia(NombreBuscar, NombrePeriodo, Observaciones);
+	}
+	
+	@Then ("^Se confirma la edicion de la vigencia$")
+	public void Confirmar_Editar_Vigencias() {
+		this.gestionParametrosPage = new CrearVigenciasPage(driver);
+		this.gestionParametrosPage.ConfirmarEdicion();
 	}
 }

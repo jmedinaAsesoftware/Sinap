@@ -6,7 +6,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
+import Sinap.Steps.BotonesPages;
 import Sinap.Steps.ElementosPages;
+import Sinap.Steps.ListasDesplegablesPages;
 import Sinap.Steps.Questions;
 import net.thucydides.core.annotations.Step;
 

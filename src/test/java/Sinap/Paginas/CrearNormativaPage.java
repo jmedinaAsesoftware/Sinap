@@ -7,7 +7,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
+import Sinap.Steps.BotonesPages;
 import Sinap.Steps.ElementosPages;
+import Sinap.Steps.ListasDesplegablesPages;
 import Sinap.Steps.Questions;
 import net.thucydides.core.annotations.Step;
 
@@ -24,6 +26,9 @@ public class CrearNormativaPage {
 	
 	@FindBy(how = How.XPATH, using = "//textarea[@formcontrolname = 'descripcion']")
 	private WebElement TextoDescripcion;
+	
+	@FindBy(how = How.XPATH, using = "//textarea[@formcontrolname = 'observaciones']")
+	private WebElement TextoObservaciones;
 
 	public CrearNormativaPage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
@@ -45,15 +50,14 @@ public class CrearNormativaPage {
 		questions.impliciWait();
 		botonesPages.BtnNormativas();
 		questions.impliciWait();
-		questions.screenShot();
-		questions.impliciWait();
-		botonesPages.BtnCrearNormativa();
+				
 	}
 
 	@Step
 
 	public void FormularioNormativa(String Documento, String NombreNormativa, String DescripcionNormativa) {
 
+		botonesPages.BtnCrearNormativa();
 		questions.screenShot();
 		questions.impliciWait();
 		listasDesplegablesPages.BtnListaDocumento(Documento);
@@ -62,9 +66,11 @@ public class CrearNormativaPage {
 		elementosPages.BtnCalendarioNormativaPublicacion();
 		elementosPages.BtnCalendarioNormativaInicio();
 		elementosPages.BtnCalendarioNormativaFin();
+		questions.screenShot();
 		questions.impliciWait();
 		botonesPages.BtnCrear();
 		questions.impliciWait();
+		questions.screenShot();
 		questions.AssertConfirmarCrearNormativa();
 		
 	}
@@ -79,27 +85,28 @@ public class CrearNormativaPage {
 	}
 	
 	@Step
-	public void EditarNormativa(String NombreBuscar, String NombreNormativa, String DescripcionNormativa) {
+	public void EditarNormativa(String NombreBuscar, String NombreNormativa, String DescripcionNormativa, String Observaciones) {
 		
-		questions.screenShot();
-		questions.impliciWait();
-		elementosPages.scrollBajar(driver);
-		questions.impliciWait();
-		questions.screenShot();
 		botonesPages.BtnEditarNormativa(NombreBuscar);
+		questions.impliciWait();
+		questions.screenShot();
 		TextoDescripcion.clear();
 		TextoNombre.sendKeys(NombreNormativa);
 		TextoDescripcion.clear();
 		TextoDescripcion.sendKeys(DescripcionNormativa);
+		TextoObservaciones.clear();
+		TextoObservaciones.sendKeys(Observaciones);
+		questions.screenShot();
 		botonesPages.BtnGuardarCambiosNormativa();
 		questions.impliciWait();
-		questions.AssertConfirmarEditarNormativa();		
+		questions.AssertConfirmarEditarNormativa();
+		questions.screenShot();
 	}
 	
 	@Step
 	public void ConfirmarEdicion() {
 		questions.impliciWait();
-		botonesPages.BtnAceptarCrearNormativa();
+		botonesPages.BtnAceptar();
 		questions.impliciWait();
 		questions.screenShot();
 		questions.AssertEditarNormativa();		

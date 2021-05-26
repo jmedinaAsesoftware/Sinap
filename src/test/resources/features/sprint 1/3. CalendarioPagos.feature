@@ -1,7 +1,7 @@
 #Proyecto Sinap
 #05/04/2021
 #Jhonatan Medina Blanco
- @Regresion
+ @Regresion1
 Feature: Debe permitir crear Calendario de pagos (HU_1.7.01) 
 Background: 
 	And abrir el navegador e ingresar a la url 
@@ -12,8 +12,8 @@ Scenario Outline: Crear una calendario de pagos vigente
 	Then se confirma la creacion del calendario de pago
 	
 	Examples: 
-		|Nombre			|ConceptoDebito 	 |Mes	  	  |PlacaTerminada|TipoPlaca	 |
-		|Automatizacio 4|abril QA Automation|DICIEMBRE	  |9			 |A:ALQUILER |
+		|Nombre			  |ConceptoDebito 	 	      |Mes	  	  |PlacaTerminada|TipoPlaca	 |
+		|Automatizacion 10|Pago de la Tasa Vehicular  |FEBRERO	  |9			 |A:ALQUILER |
 		
 
 Scenario Outline: Editar calendario de pagos vigente 
@@ -21,5 +21,5 @@ Scenario Outline: Editar calendario de pagos vigente
 	Then  se confirma la edicion del calendario de pago 
 	Examples: 
 
-		|NombreBuscar		 |Nombre			|ConceptoDebito |Mes	  	  |PlacaTerminada|TipoPlaca	|Observaciones|
-		|Automatizacio R	 |Automatizacio r	|Prueba integral|OCTUBRE	  |0			 |ALQUILER	|Pruebas	  |
+		|NombreBuscar		 |Nombre				 |ConceptoDebito 	   |Mes	  	  |PlacaTerminada|TipoPlaca	|Observaciones|
+		|Automatizacion 10 	 |Automatizacion Editada |Cambio a Placa tipo II|MARZO	  |0			 |ALQUILER	|Pruebas	  |

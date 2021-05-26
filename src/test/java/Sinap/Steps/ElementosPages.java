@@ -2,6 +2,7 @@ package Sinap.Steps;
 
 import java.util.List;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -28,7 +29,6 @@ public class ElementosPages {
 
 	@FindBy(how = How.XPATH, using = "//app-multa-crear//button[@class ='mat-focus-indicator mat-icon-button mat-button-base']")
 	private WebElement BtnIconoCalendarioCrearMulta;
-	
 	
 	public ElementosPages(WebDriver driver) {
 		PageFactory.initElements(driver, this);
@@ -86,7 +86,7 @@ public class ElementosPages {
 		WebElement scroll = driver.findElement(
 				By.xpath("//mat-dialog-content[@class ='mat-dialog-content mat-typography custom-scrollbar']"));
 		Actions scrolldown = new Actions(driver);
-		List<WebElement> article = scroll.findElements(By.tagName("article"));
+		List<WebElement> article = scroll.findElements(By.tagName("button"));
 		scrolldown.moveToElement(article.get(6)).click().build().perform();
 	}
 	
@@ -187,4 +187,18 @@ public class ElementosPages {
 		clickOnElement(BtnDay);
 	}
 	
+	@Step
+	public void ScrollEditarVigencia() {
+		WebElement scroll = driver.findElement(
+				By.xpath("//mat-dialog-container[@id='mat-dialog-3']/app-ventana-modal/mat-dialog-content/app-vigencias-editar/section/form/footer/button[2]"));
+				scroll.click();
+	}
+	
+	@Step
+	public void MensajeEditarVigencia() {
+
+		WebElement mensaje = driver.findElement(
+				By.xpath("//article[contains(text(),'¿Está seguro que quiere modificar esta vigencia?')]"));
+		mensaje.click();
+	}
 }

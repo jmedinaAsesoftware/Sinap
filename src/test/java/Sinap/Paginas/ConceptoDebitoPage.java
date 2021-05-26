@@ -4,7 +4,10 @@ package Sinap.Paginas;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+
+import Sinap.Steps.BotonesPages;
 import Sinap.Steps.ElementosPages;
+import Sinap.Steps.ListasDesplegablesPages;
 import Sinap.Steps.Questions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -23,9 +26,6 @@ public class ConceptoDebitoPage {
 
 	@FindBy(how = How.XPATH, using = "//textarea[@formcontrolname = 'descripcion']")
 	private WebElement TextoDescripcion;
-
-	@FindBy(how = How.XPATH, using = "//input[@formcontrolname = 'codigoConcepto']")
-	private WebElement TextoCodigoConcepto;
 	
 	@FindBy(how = How.XPATH, using = "//textarea[@formcontrolname = 'observaciones']")
 	private WebElement TextoObservaciones;
@@ -58,8 +58,8 @@ public class ConceptoDebitoPage {
 	}
 
 	@Step
-	public void FormularioConcetoDebito(String NombreConcepto, String Normativa, String Descripcion, String Multa,
-			String CodigoConcepto, String Registral) {
+	public void FormularioConceptoDebito(String NombreConcepto, String Normativa, String Descripcion, String Multa,
+			String Concepto, /*String TipoConcepto,*/ String Registral) {
 
 		botonesPages.BtnCrearFormulario();
 		questions.impliciWait();
@@ -71,8 +71,9 @@ public class ConceptoDebitoPage {
 		TextoDescripcion.sendKeys(Descripcion);
 		questions.impliciWait();
 		listasDesplegablesPages.ListaMulta(driver, Multa);
-		TextoCodigoConcepto.sendKeys(CodigoConcepto);
-		questions.impliciWait();
+		listasDesplegablesPages.ListaConcepto(driver, Concepto);
+		//listasDesplegablesPages.ListaTipoConcepto(driver, TipoConcepto);
+		//questions.impliciWait();
 		listasDesplegablesPages.ListaDebitoRegistral(driver, Registral);
 		questions.screenShot();
 		questions.impliciWait();
