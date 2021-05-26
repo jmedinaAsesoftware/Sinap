@@ -5,7 +5,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
+
+import Sinap.Steps.BotonesPages;
 import Sinap.Steps.ElementosPages;
+import Sinap.Steps.ListasDesplegablesPages;
 import Sinap.Steps.Questions;
 import net.thucydides.core.annotations.Step;
 
@@ -19,7 +22,6 @@ public class CrearVigenciasPage {
 
 	@FindBy(how = How.CSS, using = "input[formcontrolname=nombrePeriodo]")
 	private WebElement TextNombrePeriodo;
-
 
 	@FindBy(how = How.XPATH, using = "//span[contains(text(),'Concepto Debito prueba cambio')]")
 	private WebElement BtnListaConceptoDeDebito;
@@ -35,6 +37,12 @@ public class CrearVigenciasPage {
 
 	@FindBy(how = How.XPATH, using = "//mat-option[@role ='option']")
 	private WebElement lista;
+	
+	@FindBy(how = How.CSS, using = "input[formcontrolname=periodo]")
+	private WebElement TextPeriodo;
+	
+	@FindBy(how = How.XPATH, using = "//textarea[@formcontrolname = 'observaciones']")
+	private WebElement TextObservaciones;
 
 	public CrearVigenciasPage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
@@ -53,7 +61,7 @@ public class CrearVigenciasPage {
 
 	// Esta clase permite hacer clic en los botones para llegar al formulario
 	@Step
-	public void CrearVigencia() {
+	public void llegarVigenciaM() {
 
 		botonesPages.BtnGestionParametros();
 		questions.impliciWait();
@@ -62,14 +70,14 @@ public class CrearVigenciasPage {
 		botonesPages.BtnVigencia();
 		questions.impliciWait();
 		questions.screenShot();
-		botonesPages.BtnCrearVigencia();
-
+	
 	}
 
 	// Esta metodo es para diligenciar el formulario para crear una vigencia
 	@Step
 	public void DiligenciarFormularioVigencia(String NombrePeriodo, String TipoPeriodo, String Concepto) {
-
+		
+		botonesPages.BtnCrearVigencia();
 		questions.screenShot();
 		questions.impliciWait();
 		TextNombrePeriodo.sendKeys(NombrePeriodo);
@@ -114,6 +122,36 @@ public class CrearVigenciasPage {
 		clickOnElement(BtnAceptarVigencia);
 		questions.tiempoSegundos(1);
 		questions.screenShot();
+	}
+	
+	@Step
+	public void EditarVigencia(String NombreBuscar, String NombrePeriodo, String Observaciones) {
+		
+		questions.screenShot();
+		botonesPages.BtnEditarVigencia(NombreBuscar);
+		questions.impliciWait();
+		TextPeriodo.clear();
+		TextPeriodo.sendKeys(NombrePeriodo);
+		TextObservaciones.clear();
+		TextObservaciones.sendKeys(Observaciones);
+		calendario.ScrollEditarVigencia();
+		questions.tiempoSegundos(1);
+		questions.AssertConfirmarEditarVigencia();
+		calendario.MensajeEditarVigencia();
+		//botonesPages.BtnGuardarCambiosVigencia();
+		questions.tiempoSegundos(1);
+			
+	
+		
+	}
+	
+	@Step
+	public void ConfirmarEdicion() {
+		questions.impliciWait();
+		botonesPages.BtnAceptarEspacio();
+		questions.impliciWait();
+		questions.screenShot();
+		questions.AssertEditarVigencia();		
 	}
 
 }

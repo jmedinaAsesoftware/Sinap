@@ -1,7 +1,7 @@
 #Proyecto Sinap
 #15/03/2021
 #Jhonatan Medina Blanco
-@Ejecucion1
+@Regresion1
 Feature: Ingresar a la pagina de Sinap y crear una vigencia 
 Background:
 
@@ -15,10 +15,10 @@ Scenario Outline: crear vigencia con periodo amnistia
 	And cerrar el navegador
 	
 		Examples: 
-		|NombrePeriodo			|TipoPeriodo		|Concepto|
-		|Jhonatan total	Q1		|Período de vigencia||
-		#|Jhonatan total Q2		|Período de vigencia||
-		#|Jhonatan total			|Período de amnistía|
+		|NombrePeriodo			       |TipoPeriodo		   |Concepto|
+		|Nueva Vigencia Automatizada 0 |Período de vigencia|    	|
+	   #|Vigencia Automatizada 1 |Período de vigencia|        |
+	   #|Vigencia Automatizada 2 |Período de amnistía|        |
 		
 #Scenario Outline: crear vigencia con periodo 
 #
@@ -27,5 +27,13 @@ Scenario Outline: crear vigencia con periodo amnistia
 #	And cerrar el navegador
 #	
 #		Examples: 
-#		|NombrePeriodo			|TipoPeriodo		|
-#		|Jhonatan total			|Período de vigencia|
+#		|NombrePeriodo			 |TipoPeriodo   	 |
+#		|Vigencia Automatizada 3 |Período de vigencia|
+@Regresion1
+Scenario Outline:: Consultar () y Modificar normativa ()
+		When Ingrese a modificar <NombreBuscar> los campos nombre periodo <NombrePeriodo> observaciones <Observaciones>
+		Then Se confirma la edicion de la vigencia
+		And cerrar el navegador
+		Examples:
+		|NombreBuscar 				  	  |NombrePeriodo	 		    |Observaciones 					          |
+		|Nueva Vigencia Automatizada 0    |Nombre editado vigencia  1	|Edición vigencia pruebas automatizadas 1 |

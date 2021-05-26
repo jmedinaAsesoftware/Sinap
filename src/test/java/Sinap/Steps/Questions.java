@@ -199,4 +199,22 @@ public class Questions {
 
 	}
 	
+	@Step
+	public void AssertConfirmarEditarVigencia() {
+
+		String mensaje = driver
+				.findElement(By
+						.xpath("//article[contains(text(),'¿Está seguro que quiere modificar esta vigencia?')]"))
+				.getText();
+		Assert.assertEquals("¿Está seguro que quiere modificar esta vigencia?", mensaje);
+	}
+	
+	@Step
+	public void AssertEditarVigencia() {
+		String mensaje = driver.findElement(By.id("toast-container")).getText();
+		Assert.assertEquals("Registro actualizado exitosamente!", mensaje);
+
+	}
+	
+	
 }
