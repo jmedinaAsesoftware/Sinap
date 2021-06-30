@@ -11,6 +11,7 @@ import Sinap.Paginas.CrearNormativaPage;
 import Sinap.Paginas.CrearVigenciasPage;
 import Sinap.Paginas.PrescripcionesPage;
 import Sinap.Steps.ElementosPages;
+import Sinap.Steps.LoginPage;
 import Sinap.Steps.Conexion;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -28,6 +29,7 @@ public class DefinitionsPages {
 	private ConceptoDebitoPage conceptoDebitoPage = new ConceptoDebitoPage(driver);
 	private CalendarioPagosPage calendarioPagosPage = new CalendarioPagosPage(driver);
 	private CrearNormativaPage crearNormativaPage = new CrearNormativaPage(driver);
+	
 
 //se realiza el llamado para ser interpetado por lenguaje gherkin..
 	@Given("^abrir el navegador e ingresar a la url$")
@@ -36,7 +38,7 @@ public class DefinitionsPages {
 		this.driver = this.conexion.abrirNavegador();
 
 	}
-
+	
 	@And("^Al hacer clic en parametros y calendario$")
 	public void crear_vigencia() throws IOException {
 		this.gestionParametrosPage = new CrearVigenciasPage(driver);

@@ -46,7 +46,7 @@ public class ElementosPages {
 	public void BtnCalendarioFin(WebDriver driver) {
 		clickOnElement(BtnIconoCalendario);
 		clickOnElement(BtnNextMonth);
-		clickOnElement(BtnDay);
+		clickOnElement(BtnDay);		
 	}
 	
 	@Step
@@ -85,9 +85,10 @@ public class ElementosPages {
 	public void ScrollConceptoDebito() {
 		WebElement scroll = driver.findElement(
 				By.xpath("//mat-dialog-content[@class ='mat-dialog-content mat-typography custom-scrollbar']"));
-		Actions scrolldown = new Actions(driver);
+		scroll.click();
+		/*Actions scrolldown = new Actions(driver);
 		List<WebElement> article = scroll.findElements(By.tagName("button"));
-		scrolldown.moveToElement(article.get(6)).click().build().perform();
+		scrolldown.moveToElement(article.get(6)).click().build().perform();*/
 	}
 	
 	@Step
@@ -190,8 +191,11 @@ public class ElementosPages {
 	@Step
 	public void ScrollEditarVigencia() {
 		WebElement scroll = driver.findElement(
-				By.xpath("//mat-dialog-container[@id='mat-dialog-3']/app-ventana-modal/mat-dialog-content/app-vigencias-editar/section/form/footer/button[2]"));
+				By.xpath("//mat-dialog-content[@class ='mat-dialog-content mat-typography custom-scrollbar']"));
 				scroll.click();
+		//Actions scrolldown = new Actions(driver);
+		//List<WebElement> button = scroll.findElements(By.tagName("button"));
+		//scrolldown.moveToElement(button.get(3)).click().build().perform();
 	}
 	
 	@Step

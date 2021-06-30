@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import Sinap.Steps.BotonesPages;
 import Sinap.Steps.ElementosPages;
 import Sinap.Steps.ListasDesplegablesPages;
+import Sinap.Steps.LoginPage;
 import Sinap.Steps.Questions;
 import net.thucydides.core.annotations.Step;
 
@@ -19,6 +20,7 @@ public class CrearVigenciasPage {
 	private ElementosPages calendario;
 	private ListasDesplegablesPages listasDesplegablesPages;
 	private BotonesPages botonesPages;
+	private LoginPage loginPage;
 
 	@FindBy(how = How.CSS, using = "input[formcontrolname=nombrePeriodo]")
 	private WebElement TextNombrePeriodo;
@@ -51,6 +53,7 @@ public class CrearVigenciasPage {
 		listasDesplegablesPages = new ListasDesplegablesPages(driver);
 		botonesPages = new BotonesPages(driver);
 		questions = new Questions(driver);
+		loginPage = new LoginPage(driver);
 
 	}
 
@@ -62,7 +65,8 @@ public class CrearVigenciasPage {
 	// Esta clase permite hacer clic en los botones para llegar al formulario
 	@Step
 	public void llegarVigenciaM() {
-
+		
+		loginPage.Login();
 		botonesPages.BtnGestionParametros();
 		questions.impliciWait();
 		botonesPages.BtnGestionParametrosCalendario();
@@ -132,6 +136,7 @@ public class CrearVigenciasPage {
 		questions.impliciWait();
 		TextPeriodo.clear();
 		TextPeriodo.sendKeys(NombrePeriodo);
+		calendario.ScrollEditarVigencia();
 		TextObservaciones.clear();
 		TextObservaciones.sendKeys(Observaciones);
 		calendario.ScrollEditarVigencia();

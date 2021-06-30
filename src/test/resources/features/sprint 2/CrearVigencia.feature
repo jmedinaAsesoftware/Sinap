@@ -15,8 +15,8 @@ Scenario Outline: crear vigencia con periodo amnistia
 	And cerrar el navegador
 	
 		Examples: 
-		|NombrePeriodo			       |TipoPeriodo		   |Concepto|
-		|Nueva Vigencia Automatizada 0 |Período de vigencia|    	|
+		|NombrePeriodo			       		|TipoPeriodo		   |Concepto|
+		|Auto Nueva Vigencia Automatizada 0 |Período de vigencia   |    	|
 	   #|Vigencia Automatizada 1 |Período de vigencia|        |
 	   #|Vigencia Automatizada 2 |Período de amnistía|        |
 		
@@ -30,7 +30,7 @@ Scenario Outline: crear vigencia con periodo amnistia
 #		|NombrePeriodo			 |TipoPeriodo   	 |
 #		|Vigencia Automatizada 3 |Período de vigencia|
 @Regresion1
-Scenario Outline:: Consultar () y Modificar normativa ()
+Scenario Outline:: Consultar () y Modificar vigencianb      ()
 		When Ingrese a modificar <NombreBuscar> los campos nombre periodo <NombrePeriodo> observaciones <Observaciones>
 		Then Se confirma la edicion de la vigencia
 		And cerrar el navegador

@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import Sinap.Steps.BotonesPages;
 import Sinap.Steps.ElementosPages;
 import Sinap.Steps.ListasDesplegablesPages;
+import Sinap.Steps.LoginPage;
 import Sinap.Steps.Questions;
 import net.thucydides.core.annotations.Step;
 
@@ -18,6 +19,7 @@ public class CrearMultasPage {
 	private ListasDesplegablesPages listasDesplegablesPages;
 	private BotonesPages botonesPages;
 	private ElementosPages elementosPages;
+	private LoginPage loginPage;
 	
 	@FindBy(how = How.XPATH, using = "//input[@formcontrolname = 'nombreMulta']")
 	private WebElement TextoNombreMulta;
@@ -49,7 +51,7 @@ public class CrearMultasPage {
 		listasDesplegablesPages = new ListasDesplegablesPages(driver);
 		botonesPages = new BotonesPages(driver);
 		questions = new Questions(driver);
-		elementosPages = new ElementosPages(driver);
+		loginPage = new LoginPage(driver);
 
 	}
 
@@ -61,14 +63,14 @@ public class CrearMultasPage {
 	// Metodo para llegar al formulario de crear multas
 	@Step
 	public void CrearMulta() {
-
+		loginPage.Login();
 		botonesPages.BtnGestionParametros();
 		questions.impliciWait();
 		botonesPages.BtnMultas();
 		questions.impliciWait();
 		questions.screenShot();
 		questions.impliciWait();
-		botonesPages.BtnCrearFormulario();
+		botonesPages.BtnCrear();
 
 	}
 

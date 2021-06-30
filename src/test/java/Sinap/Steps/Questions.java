@@ -54,7 +54,7 @@ public class Questions {
 	public void impliciWait() {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
-
+	
 	@Step
 	public void AssertConfirmacionCrearVigencia() {
 
