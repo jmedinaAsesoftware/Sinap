@@ -32,7 +32,7 @@ public class BotonesPages {
 	@FindBy(how = How.XPATH, using = "//span[contains(text(),'Multas')]")
 	private WebElement BtnMultas;
 
-	@FindBy(how = How.XPATH, using = "//button//span[text()='Crear']")
+	@FindBy(how = How.XPATH, using = "//button//span[contains(text()='Crear')]")
 	private WebElement BtnCrearFormulario;
 
 	@FindBy(how = How.XPATH, using = "//span[contains(text(),'Prescripciones')]")
@@ -83,7 +83,7 @@ public class BotonesPages {
 	@FindBy(how = How.XPATH, using = "//button//span[contains(text(),'Asociar')]")
 	private WebElement BtnAsociar;
 
-	@FindBy(how = How.XPATH, using = "//mat-dialog-container//button//span[contains(text(),'Crear multa')]")
+	@FindBy(how = How.XPATH, using = "//button//span[text()='Crear']")
 	private WebElement BtnCrearMulta;
 	
 	@FindBy(how = How.XPATH, using = "//button//span[text()='Crear Normativa']")

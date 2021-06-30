@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import Sinap.Steps.BotonesPages;
 import Sinap.Steps.ElementosPages;
 import Sinap.Steps.ListasDesplegablesPages;
+import Sinap.Steps.LoginPage;
 import Sinap.Steps.Questions;
 import net.thucydides.core.annotations.Step;
 
@@ -19,6 +20,7 @@ public class CalendarioPagosPage {
 	private Questions questions;
 	private ListasDesplegablesPages listasDesplegablesPages;
 	private ElementosPages elementosPages;
+	private LoginPage loginPage;
 
 	@FindBy(how = How.XPATH, using = "//input[@formcontrolname = 'nombre']")
 	private WebElement TextoNombre;
@@ -33,6 +35,7 @@ public class CalendarioPagosPage {
 		this.questions = new Questions(driver);
 		this.listasDesplegablesPages = new ListasDesplegablesPages(driver);
 		this.elementosPages = new ElementosPages(driver);
+		this.loginPage = new LoginPage(driver);
 	}
 
 	// Metodo generico para dar clic a un elemento
@@ -43,6 +46,7 @@ public class CalendarioPagosPage {
 	@Step
 	public void CrearCalendarioPagos() {
 		questions.impliciWait();
+		loginPage.Login();
 		botonesPages.BtnGestionParametros();
 		botonesPages.BtnCalendarioPagos();
 		questions.screenShot();
@@ -76,7 +80,7 @@ public class CalendarioPagosPage {
 		elementosPages.ScrollCalendarioPagos();
 		listasDesplegablesPages.ListaPlacasTerminadas(PlacaTerminada);
 		questions.impliciWait();
-		listasDesplegablesPages.ListaTipoPlacas(TipoPlaca);
+		listasDesplegablesPages.ListaTipoPlacas();
 		questions.screenShot();
 		questions.tiempoSegundos(1);
 		botonesPages.BtnCrearFormulario();

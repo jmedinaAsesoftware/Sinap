@@ -8,6 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import Sinap.Steps.BotonesPages;
 import Sinap.Steps.ElementosPages;
 import Sinap.Steps.ListasDesplegablesPages;
+import Sinap.Steps.LoginPage;
 import Sinap.Steps.Questions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -20,6 +21,7 @@ public class ConceptoDebitoPage {
 	private BotonesPages botonesPages;
 	private ListasDesplegablesPages listasDesplegablesPages;
 	private ElementosPages calendario;
+	private LoginPage loginPage;
 
 	@FindBy(how = How.XPATH, using = "//input[@formcontrolname = 'nombreConcepto']")
 	private WebElement TextoNombreConcepto;
@@ -37,6 +39,7 @@ public class ConceptoDebitoPage {
 		botonesPages = new BotonesPages(driver);
 		listasDesplegablesPages = new ListasDesplegablesPages(driver);
 		calendario = new ElementosPages(driver);
+		loginPage = new LoginPage(driver);
 
 	}
 
@@ -49,6 +52,7 @@ public class ConceptoDebitoPage {
 	public void CrearConceptoDebito() {
 
 		questions.impliciWait();
+		loginPage.Login();
 		botonesPages.BtnGestionParametros();
 		questions.impliciWait();
 		botonesPages.BtnConcetoDeDebito();

@@ -10,6 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import Sinap.Steps.BotonesPages;
 import Sinap.Steps.ElementosPages;
 import Sinap.Steps.ListasDesplegablesPages;
+import Sinap.Steps.LoginPage;
 import Sinap.Steps.Questions;
 import net.thucydides.core.annotations.Step;
 
@@ -20,6 +21,7 @@ public class CrearNormativaPage {
 	private ListasDesplegablesPages listasDesplegablesPages;
 	private ElementosPages elementosPages;
 	private WebDriver driver;
+	private LoginPage loginPage;
 	
 	@FindBy(how = How.XPATH, using = "//input[@formcontrolname = 'nombre']")
 	private WebElement TextoNombre;
@@ -37,6 +39,7 @@ public class CrearNormativaPage {
 		botonesPages = new BotonesPages(driver);
 		questions = new Questions(driver);
 		elementosPages = new ElementosPages(driver);
+		loginPage = new LoginPage(driver);
 	}
 
 	public void clickOnElement(WebElement element) {
@@ -45,7 +48,8 @@ public class CrearNormativaPage {
 	
 	@Step
 	public void CrearNormativa() {
-
+		
+		loginPage.Login();
 		botonesPages.BtnGestionParametros();
 		questions.impliciWait();
 		botonesPages.BtnNormativas();
@@ -57,6 +61,7 @@ public class CrearNormativaPage {
 
 	public void FormularioNormativa(String Documento, String NombreNormativa, String DescripcionNormativa) {
 
+		
 		botonesPages.BtnCrearNormativa();
 		questions.screenShot();
 		questions.impliciWait();
@@ -90,7 +95,7 @@ public class CrearNormativaPage {
 		botonesPages.BtnEditarNormativa(NombreBuscar);
 		questions.impliciWait();
 		questions.screenShot();
-		TextoDescripcion.clear();
+		TextoNombre.clear();
 		TextoNombre.sendKeys(NombreNormativa);
 		TextoDescripcion.clear();
 		TextoDescripcion.sendKeys(DescripcionNormativa);

@@ -5,7 +5,7 @@ Feature: Debe permitir crear concepto de debito (HU_1.4.01)y debe permitir modif
 Background: 
 	Given abrir el navegador e ingresar a la url 
 	And Al hacer clic en parametros y conceptos de debito 
-@Regresion1	
+@Regresion1
 Scenario Outline: : Crear concepto debito 
 
 	When Al diligenciar los campos nombre <NombreConcepto> seleccionar normativa <Normativa> diligenciar la descripcion <Descripcion> seleccionar si tiene multa <Multa> seleccionar el concepto <Concepto> y seleccionar si es debito registral <Registral> 

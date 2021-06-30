@@ -15,7 +15,7 @@ Scenario Outline: : Creación de prescripciones
 	And cerrar el navegador 
 	Examples: 
 		|Nombre	 	|Descripcion	 |TipoConcepto |Concepto			    |PeriodoVigente|Periodo |VigenciaInicio|VigenciaFin|FechaAplicacion|
-		|Auto QA	|Automat final   |Débito	   |Cambio a Placa tipo II	|1			   |Meses   |2038/01/26	   |2038/04/23 |06/11		   |
+		|Auto QA	|Automat final   |Débito	   |Cambio a Placa tipo II	|1			   |Meses   |2051/11/17	   |2051/12/30 |05/05		   |
 	#	|Prescripcion	|Pruebas Automatizadas |Crédito		|Concepto test	|2			   |Bimestre|2021/03/23	   |2021/07/23 |12/21|
 		
 @Regresion1
@@ -26,7 +26,7 @@ Scenario Outline: Modificar prescripción
 	And cerrar el navegador 
 	Examples: 
 		|NombreBuscar	|Nombre		  		|Observacion  |VigenciaFin|
-		|Auto QA		|prescripcion final |Pruebas qa   |2038/06/23 |
+		|Auto QA		|prescripcion final |Pruebas qa   |2052/01/21 |
 		
 		
 		

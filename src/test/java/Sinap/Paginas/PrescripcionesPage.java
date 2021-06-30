@@ -10,6 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import Sinap.Steps.BotonesPages;
 import Sinap.Steps.ElementosPages;
 import Sinap.Steps.ListasDesplegablesPages;
+import Sinap.Steps.LoginPage;
 import Sinap.Steps.Questions;
 import net.thucydides.core.annotations.Step;
 
@@ -20,6 +21,7 @@ public class PrescripcionesPage {
 	private ElementosPages calendario;
 	private ListasDesplegablesPages listasDesplegablesPages;
 	private BotonesPages botonesPages;
+	private LoginPage loginPage;
 
 	@FindBy(how = How.CSS, using = "input[formcontrolname=nombre]")
 	private WebElement TextNombrePeriodo;
@@ -52,6 +54,7 @@ public class PrescripcionesPage {
 		listasDesplegablesPages = new ListasDesplegablesPages(driver);
 		botonesPages = new BotonesPages(driver);
 		questions = new Questions(driver);
+		loginPage = new LoginPage(driver);
 
 	}
 
@@ -64,6 +67,7 @@ public class PrescripcionesPage {
 	@Step
 	public void CrearPrescripciones() {
 
+		loginPage.Login();
 		questions.impliciWait();
 		botonesPages.BtnGestionParametros();
 		questions.impliciWait();
